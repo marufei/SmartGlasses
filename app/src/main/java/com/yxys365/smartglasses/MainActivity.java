@@ -12,7 +12,7 @@ import com.yxys365.smartglasses.utils.SecurityUtil;
 public class MainActivity extends AppCompatActivity {
 
     private Button operate;
-    private String TAG="MainActivity";
+    private String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        operate=findViewById(R.id.operate);
+        operate = findViewById(R.id.operate);
         operate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
 //                byte [] aaa= SecurityUtil.encryptJNI(bytes);
                 Log.e(TAG, "------点击了按钮");
 
-                String str = "5a5a00ee001314151617202122232425262727";
-                str = str.substring(4, str.length() - 2);
+                String str = "00FF067071727374E3E3E3E3E3E37575";
+//                str = str.substring(4, str.length() - 2);
                 String str1 = str.substring(0, str.length() / 2);
                 String str2 = str.substring(str.length() / 2, str.length());
                 Log.e(TAG, "---str:" + str);
@@ -43,6 +43,14 @@ public class MainActivity extends AppCompatActivity {
                 s = s + getNum(s);
 
                 Log.e(TAG, "------s:" + s);
+
+//                String str = "5A5A8A37FA67FAC9A768ED3389B4DFCA8276A6";
+//                str = str.substring(4, str.length() - 2);
+//                String str1 = str.substring(0, str.length() / 2);
+//                String str2 = str.substring(str.length() / 2, str.length());
+//                String s = Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str1))) +
+//                        Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str2)));
+//                Log.e(TAG, "----s:" + s);
             }
         });
     }
@@ -58,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < sum.length; i++) {
             num += sum[i];
         }
-        Log.e(TAG, "num-------" + Integer.toHexString(num));
-        return Integer.toHexString(num);
+        byte [] sss={num};
+        Log.e(TAG, "num-------" + Codeutil.bytesToHexString(sss));
+        return Codeutil.bytesToHexString(sss);
     }
 }
