@@ -8,4 +8,35 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowDisablePreview">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowAnimationStyle">@style/AppTheme.Slide.Animation</item>
+    </style>
+
+    <style name="AppTheme.Slide.Animation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/anim_slide_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_slide_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_slide_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/anim_slide_out</item>
+    </style>
+
+    <!-- dialog动画 -->
+    <style name="style_dialog">
+        <item name="android:windowEnterAnimation">@anim/anim_popup_zoom_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_popup_zoom_exit</item>
+    </style>
+
+    <!--日期选择-->
+    <style name="time_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/bac</item>
+    </style>
+
 </resources>

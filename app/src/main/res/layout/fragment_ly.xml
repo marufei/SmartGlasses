@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bac">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="240dp"-->
+                <!--android:gravity="center"-->
+                <!--android:text="图表"-->
+                <!--android:textColor="@color/gray_3"-->
+                <!--android:textSize="16sp" />-->
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/ly_line"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#EDF2F5"
+                android:paddingBottom="12dp"
+                android:paddingTop="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="检测时间"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="右眼(R)"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="左眼(L)"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="双眼(S)"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <com.yxys365.smartglasses.views.ListViewForScrollView
+                android:id="@+id/ly_lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

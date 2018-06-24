@@ -2,20 +2,91 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yxys365.smartglasses">
 
+    <!-- 蓝牙权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!--扫描二维码权限-->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 网络权限 -->
+    <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
+
     <application
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".activity.ForgetPwdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BLEActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TestBleActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
+        <activity
+            android:name=".activity.UserInfoActivity"
+            android:screenOrientation="portrait" >
+
+        </activity>
+        <activity
+            android:name=".activity.NvActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.RdActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ServiceInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NvFormActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OcularActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BuyTimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ExpreciseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.NvListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UseDeviceActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.UserInfo2Activity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CustomScanActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

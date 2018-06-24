@@ -1,16 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.yxys365.smartglasses.MainActivity">
+    android:background="@color/white"
+    tools:context="com.yxys365.smartglasses.activity.MainActivity">
+    <include layout="@layout/view_title_bar"/>
+    <!--<Button-->
+        <!--android:id="@+id/operate"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="操作"/>-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ll_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/operate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="操作"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_e6" />
+
+            <RadioGroup
+                android:id="@+id/rg_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <RadioButton
+                    android:id="@+id/rb0"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+
+                    android:background="?android:attr/selectableItemBackground"
+                    android:button="@null"
+                    android:clickable="true"
+                    android:drawableTop="@drawable/mian_selector_1"
+                    android:gravity="center"
+                    android:drawablePadding="-10dp"
+                    android:paddingTop="10dp"
+                    android:text="首页"
+                    android:textColor="@drawable/main_color_selector"
+                    android:textSize="11sp" />
+
+
+                <RadioButton
+                    android:id="@+id/rb1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:drawablePadding="-10dp"
+                    android:paddingTop="10dp"
+                    android:layout_weight="1"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:button="@null"
+                    android:clickable="true"
+                    android:drawableTop="@drawable/mian_selector_2"
+                    android:gravity="center"
+                    android:text="裸眼报表"
+                    android:textColor="@drawable/main_color_selector"
+                    android:textSize="11sp" />
+
+                <!--<RadioButton-->
+                    <!--android:id="@+id/rb2"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:drawablePadding="10dp"-->
+                    <!--android:background="?android:attr/selectableItemBackground"-->
+                    <!--android:button="@null"-->
+                    <!--android:clickable="true"-->
+                    <!--android:drawableTop="@drawable/mian_selector_3"-->
+                    <!--android:textColor="@drawable/main_color_selector"-->
+                    <!--android:textSize="11sp" />-->
+
+                <RadioButton
+                    android:id="@+id/rb3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="-10dp"
+                    android:paddingTop="10dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:button="@null"
+                    android:clickable="true"
+                    android:drawableTop="@drawable/mian_selector_4"
+                    android:gravity="center"
+                    android:text="佩戴情况表"
+                    android:textColor="@drawable/main_color_selector"
+                    android:textSize="11sp" />
+                <RadioButton
+                    android:id="@+id/rb4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="-10dp"
+                    android:paddingTop="10dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:button="@null"
+                    android:clickable="true"
+                    android:drawableTop="@drawable/mian_selector_5"
+                    android:gravity="center"
+                    android:text="我的"
+                    android:textColor="@drawable/main_color_selector"
+                    android:textSize="11sp" />
+
+            </RadioGroup>
+
+
+        </LinearLayout>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_show"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_bottom"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+
 
 </LinearLayout>

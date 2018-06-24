@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bac"
+    android:orientation="vertical"
+    tools:context="com.yxys365.smartglasses.activity.UserInfo2Activity">
+
+    <include layout="@layout/view_title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bac"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:elevation="3dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="监护人姓名"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/user_info2_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2.5"
+                    android:hint="请输入监护人姓名"
+                    android:lines="1"
+                    android:background="@null"
+                    android:textColor="@color/gray_4a"
+                    android:textColorHint="@color/gray_d0"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/gray_d0"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="监护人手机"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/user_info2_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2.5"
+                    android:hint="请输入监护人手机号"
+                    android:inputType="number"
+                    android:lines="1"
+                    android:background="@null"
+                    android:textColor="@color/gray_4a"
+                    android:textColorHint="@color/gray_d0"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/gray_d0"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="微信号"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/user_info2_wx"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2.5"
+                    android:hint="请输入微信号"
+                    android:background="@null"
+                    android:lines="1"
+                    android:textColor="@color/gray_4a"
+                    android:textColorHint="@color/gray_d0"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/gray_d0"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_marginBottom="15dp"
+                android:paddingTop="15dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:text="邮箱地址"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/user_info2_email"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="2.5"
+                    android:hint="请输入邮箱地址"
+                    android:background="@null"
+                    android:lines="1"
+                    android:textColor="@color/gray_4a"
+                    android:textColorHint="@color/gray_d0"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@color/gray_d0"/>
+
+
+
+
+            <Button
+                android:id="@+id/user_info2_next"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/solid_blue"
+                android:layout_marginLeft="45dp"
+                android:layout_marginRight="45dp"
+                android:text="下一步"
+                android:textSize="16sp"
+                android:elevation="3dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

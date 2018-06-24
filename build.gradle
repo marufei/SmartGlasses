@@ -19,6 +19,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+//        MPAndroid折线图
+        maven { url 'https://jitpack.io' }
     }
 }
 

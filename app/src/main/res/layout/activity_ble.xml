@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_3"
+            android:text="加密后的数据："/>
+        <TextView
+            android:id="@+id/tv_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray_3"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="搜索BLE设备"/>
+
+    <Button
+        android:id="@+id/btn_success"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0066指令加密"/>
+    <Button
+        android:id="@+id/btn_dj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="申请电机指令加密"/>
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="电机加速指令加密"/>
+    <Button
+        android:id="@+id/btn_reduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="电机减速指令加密"/>
+
+    <Button
+        android:id="@+id/btn_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="停止电机指令加密"/>
+
+    <ListView
+        android:id="@+id/list_show"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

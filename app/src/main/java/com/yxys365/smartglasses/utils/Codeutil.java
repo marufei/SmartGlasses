@@ -354,4 +354,20 @@ public class Codeutil {
             return false;
         }
     }
+
+    /**
+     * 获取和校验
+     *
+     * @return
+     */
+    public static String getNum(String s) {
+        byte num = 0;
+        byte[] sum = Codeutil.hexStringToByte(s);
+        for (int i = 0; i < sum.length; i++) {
+            num += sum[i];
+        }
+        byte [] sss={num};
+//        Log.e(TAG, "num-------" + Codeutil.bytesToHexString(sss));
+        return Codeutil.bytesToHexString(sss);
+    }
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bac"
+    android:orientation="vertical"
+    tools:context="com.yxys365.smartglasses.activity.BuyTimeActivity">
+
+    <include layout="@layout/view_title_bar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@color/gray_ed"
+        android:gravity="center">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="购置日期"
+            android:textSize="14sp"
+            android:textColor="@color/gray_4a"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="购置时间"
+            android:textSize="14sp"
+            android:textColor="@color/gray_4a"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="使用情况"
+            android:textSize="14sp"
+            android:textColor="@color/gray_4a"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/buy_time_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>

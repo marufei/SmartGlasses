@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/title_bar_tob"
+    android:layout_width="match_parent"
+    android:layout_height="66dp"
+    android:background="@color/app_blue">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/app_name"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@mipmap/arrow_left_w"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/menu"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/transparent"
+            android:drawablePadding="-5dp"
+            android:gravity="center"
+            android:minWidth="20dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/white"
+            android:textSize="9sp"
+            android:visibility="gone"
+            tools:ignore="RtlHardcoded" />
+        <!--<View-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:background="@color/gray_e6"/>-->
+    </RelativeLayout>
+
+</RelativeLayout>
