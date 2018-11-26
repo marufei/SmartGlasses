@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -61,6 +62,7 @@ public class RdActivity extends BaseActivity implements View.OnClickListener {
      */
     public static String regulation;
     private String TAG = "RdActivity";
+    private Button rd_next;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +71,7 @@ public class RdActivity extends BaseActivity implements View.OnClickListener {
         setTitle("屈光检测信息");
         setBack(true);
         ToolBarStyle(1);
-        setMenu("下一步", R.color.white);
+        setMenu("跳过", R.color.white);
         initViews();
         initDatas();
     }
@@ -107,6 +109,8 @@ public class RdActivity extends BaseActivity implements View.OnClickListener {
     private void initViews() {
         rd_tab = findViewById(R.id.rd_tab);
         rd_vp = findViewById(R.id.rd_vp);
+        rd_next=findViewById(R.id.rd_next);
+        rd_next.setOnClickListener(this);
     }
 
     public static void start(Context context) {
@@ -119,31 +123,65 @@ public class RdActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.menu:
-                if (TextUtils.isEmpty(test_refraction)) {
-                    MyUtils.showToast(RdActivity.this, "请先填写选择屈光检测状况表");
-                    return;
-                } else {
-                    if (test_refraction.contains("null")) {
-                        MyUtils.showToast(RdActivity.this, "请先完善选择屈光检测状况表");
+                ServiceInfoActivity.start(RdActivity.this);
+                break;
+            case R.id.rd_next:
+                if(TextUtils.isEmpty(test_refraction)&&TextUtils.isEmpty(concave_correct_refraction)&&TextUtils.isEmpty(convex_correct_refraction)&&TextUtils.isEmpty(regulation)) {
+                    ServiceInfoActivity.start(RdActivity.this);
+                }else {
+//                    if (TextUtils.isEmpty(test_refraction)) {
+//                        MyUtils.showToast(RdActivity.this, "请先填写选择屈光检测状况表");
+//                        return;
+//                    } else {
+//                        if (test_refraction.contains("null")) {
+//                            MyUtils.showToast(RdActivity.this, "请先完善选择屈光检测状况表");
+//                            return;
+//                        }
+//                    }
+//                    if (TextUtils.isEmpty(concave_correct_refraction) && TextUtils.isEmpty(convex_correct_refraction)) {
+//                        MyUtils.showToast(RdActivity.this, "请先填写屈光矫正状况表");
+//                        return;
+//                    } else {
+//
+//                        MyUtils.Loge(TAG, "concave_correct_refraction:" + concave_correct_refraction);
+//                        MyUtils.Loge(TAG, "convex_correct_refraction:" + convex_correct_refraction);
+//                        if (!concave_correct_refraction.contains("null") || !convex_correct_refraction.contains("null")) {
+////                        MyUtils.showToast(RdActivity.this, "可以请求了");
+//                            if (!TextUtils.isEmpty(regulation) && !regulation.contains("null")) {
+//                                getStep3Data();
+//                            }else {
+//                                MyUtils.showToast(RdActivity.this, "请先完善选择调节状况表");
+//                                return;
+//                            }
+//
+//                        } else {
+//                            MyUtils.showToast(RdActivity.this, "请先完善屈光矫正状况表");
+//                        }
+//                    }
+
+
+                    if(!TextUtils.isEmpty(test_refraction)&&test_refraction.contains("null")){
+                        MyUtils.showToast(RdActivity.this, "请先填写选择屈光检测状况表");
                         return;
                     }
-                }
-                if (TextUtils.isEmpty(concave_correct_refraction) || TextUtils.isEmpty(convex_correct_refraction)) {
-                    MyUtils.showToast(RdActivity.this, "请先填写屈光矫正状况表");
-                    return;
-                } else {
-                    MyUtils.Loge(TAG, "concave_correct_refraction:" + concave_correct_refraction);
-                    MyUtils.Loge(TAG, "convex_correct_refraction:" + convex_correct_refraction);
-                    if (!concave_correct_refraction.contains("null")) {
-                        MyUtils.showToast(RdActivity.this, "可以请求了");
-                        getStep3Data();
-                    }
-                    if (!convex_correct_refraction.contains("null")) {
-                        MyUtils.showToast(RdActivity.this, "可以请求了");
-                        getStep3Data();
-                    }
-                }
 
+                    if(!TextUtils.isEmpty(concave_correct_refraction)&&concave_correct_refraction.contains("null")){
+                        MyUtils.showToast(RdActivity.this, "请先填写屈光矫正状况表");
+                        return;
+                    }
+
+                    if(!TextUtils.isEmpty(convex_correct_refraction)&&convex_correct_refraction.contains("null")){
+                        MyUtils.showToast(RdActivity.this, "请先填写屈光矫正状况表");
+                        return;
+                    }
+
+                    if (!TextUtils.isEmpty(regulation) && regulation.contains("null")) {
+                        MyUtils.showToast(RdActivity.this, "请先填写调节状况表");
+                        return;
+                    }
+                    getStep3Data();
+
+                }
                 break;
         }
     }
@@ -164,7 +202,7 @@ public class RdActivity extends BaseActivity implements View.OnClickListener {
                         ServiceInfoActivity.start(RdActivity.this);
                     }else {
                         String msg=jsonObject.getString("msg");
-                        MyUtils.showToast(RdActivity.this,msg);
+                        VolleyUtils.dealErrorStatus(RdActivity.this,code,msg);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -174,21 +212,34 @@ public class RdActivity extends BaseActivity implements View.OnClickListener {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                MyUtils.showToast(RdActivity.this,"网络有问题");
             }
         }){
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String,String> map=new HashMap<>();
                 map.put("register_code", SaveUtils.getString(KeyUtils.register_code));
-                map.put("test_refraction",test_refraction);
-                map.put("concave_correct_refraction",concave_correct_refraction);
-                map.put("convex_correct_refraction",convex_correct_refraction);
-                map.put("regulation",regulation);
+                if(!TextUtils.isEmpty(test_refraction)&&!test_refraction.contains("null")) {
+                    map.put("test_refraction", test_refraction);
+                }
+                if(!TextUtils.isEmpty(concave_correct_refraction)&&!concave_correct_refraction.contains("null")) {
+                    map.put("concave_correct_refraction", concave_correct_refraction);
+                }
+                if(!TextUtils.isEmpty(convex_correct_refraction)&&!convex_correct_refraction.contains("null")) {
+                    map.put("convex_correct_refraction", convex_correct_refraction);
+                }
+                if(!TextUtils.isEmpty(regulation)&&!regulation.contains("null")) {
+                    map.put("regulation", regulation);
+                }
+//                MyUtils.Loge(TAG,"register_code:"+SaveUtils.getString(KeyUtils.register_code)+"--test_refraction:"+test_refraction
+//                +"--concave_correct_refraction:"+concave_correct_refraction+"--convex_correct_refraction:"+convex_correct_refraction
+//                +"--regulation:"+regulation);
                 return map;
             }
         };
         VolleyUtils.setTimeOut(stringRequest);
         VolleyUtils.getInstance(RdActivity.this).addToRequestQueue(stringRequest);
     }
+
+
 }

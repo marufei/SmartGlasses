@@ -7,41 +7,57 @@
     android:orientation="vertical"
     tools:context="com.yxys365.smartglasses.activity.BuyTimeActivity">
 
-    <include layout="@layout/view_title_bar"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:background="@color/gray_ed"
-        android:gravity="center">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="购置日期"
-            android:textSize="14sp"
-            android:textColor="@color/gray_4a"/>
+    <include layout="@layout/view_title_bar" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="购置时间"
-            android:textSize="14sp"
-            android:textColor="@color/gray_4a"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="使用情况"
-            android:textSize="14sp"
-            android:textColor="@color/gray_4a"/>
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/buy_time_lv"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/buy_time_rl"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@color/gray_ed"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="购置日期"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="购置时间"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="使用情况"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="14sp" />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/buy_time_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+
 </LinearLayout>

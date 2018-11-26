@@ -45,6 +45,7 @@ import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -56,12 +57,12 @@ public class MyUtils {
     public static Toast mToast;
     private static Pattern mPattern;
     private static Matcher mMatcher;
-    public static boolean logStatus = true;
+    public static boolean logStatus = false;
 
     public static void Loge(String TAG, String msg) {
         try {
             if (logStatus) {
-                Log.e(TAG + "-ttrm", msg);
+                Log.e(TAG + "-金视佳", msg);
             }
         } catch (Exception e) {
             Log.e(TAG + "e=", e.toString());
@@ -168,7 +169,11 @@ public class MyUtils {
     public static int Str2Int(String str) {
 //        int i = (int)Double.parseDouble(str);
         //应该先判断 字符串是不是空
-        return Integer.valueOf(str).intValue();
+        if(!TextUtils.isEmpty(str)) {
+            return Integer.valueOf(str).intValue();
+        }else {
+            return 0;
+        }
     }
 
     public static int float2Int(float f) {
@@ -197,18 +202,7 @@ public class MyUtils {
         return f;
     }
 
-    /**
-     * double保留两位数字
-     *
-     * @return
-     */
-    public static double Double2(Double d) {
-        if (d != null) {
-            DecimalFormat df = new DecimalFormat("0.00");
-            return Str2Double(df.format(d));
-        }
-        return d;
-    }
+
 
     /**
      * 检测网络是否可用
@@ -1033,6 +1027,44 @@ public class MyUtils {
     public static int px2sp(Context context, float pxValue) {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
+    }
+
+    /**
+     * String指定位置插入元素
+     * @param src
+     * @param dec
+     * @param position
+     * @return
+     */
+    public static String insertStringInParticularPosition(String src, String dec, int position){
+        StringBuffer stringBuffer = new StringBuffer(src);
+        return stringBuffer.insert(position, dec).toString();
+    }
+
+    public static String sHA1(Context context) {
+        try {
+            PackageInfo info = context.getPackageManager().getPackageInfo(
+                    context.getPackageName(), PackageManager.GET_SIGNATURES);
+            byte[] cert = info.signatures[0].toByteArray();
+            MessageDigest md = MessageDigest.getInstance("SHA1");
+            byte[] publicKey = md.digest(cert);
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < publicKey.length; i++) {
+                String appendString = Integer.toHexString(0xFF & publicKey[i])
+                        .toUpperCase(Locale.US);
+                if (appendString.length() == 1)
+                    hexString.append("0");
+                hexString.append(appendString);
+                hexString.append(":");
+            }
+            String result = hexString.toString();
+            return result.substring(0, result.length() - 1);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

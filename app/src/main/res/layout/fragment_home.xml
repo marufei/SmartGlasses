@@ -98,19 +98,21 @@
                 android:src="@mipmap/search_divice_s" />
 
             <TextView
+                android:id="@+id/fragment_ble_mac"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_weight="1"
-                android:text="设备 98:7B:F3:78:7C:80 "
+                android:text="设备 -- "
                 android:textColor="@color/gray_4a"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/fragment_ble_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:text="已连接"
+                android:text="--"
                 android:textColor="@color/gray_4a"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -122,36 +124,54 @@
             android:layout_marginTop="10dp">
 
             <TextView
+                android:id="@+id/home_plan_name"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="方案十："
+                android:layout_height="match_parent"
+                android:text="方案--"
                 android:textColor="@color/gray_4a"
-                android:textSize="12sp" />
-
+                android:textSize="14sp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="00:34:00"
+                android:text="："
                 android:textColor="@color/gray_4a"
-                android:textSize="12sp" />
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/home_plan_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="@color/gray_4a"
+                android:textSize="14sp" />
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:text="00:34:00"
-            android:textColor="@color/gray_4a"
-            android:textSize="45sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="运行时间"
-            android:textColor="@color/gray_4a"
-            android:textSize="12sp" />
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:text="总运行时间："
+                android:textColor="@color/gray_4a"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/home_plan_timer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:text="--"
+                android:textColor="@color/gray_4a"
+                android:textSize="45sp" />
+        </RelativeLayout>
+
+
+
 
         <!--<ImageView-->
         <!--android:layout_width="23dp"-->
@@ -170,46 +190,83 @@
             android:padding="5dp">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/home_add"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerHorizontal="true"
-                android:src="@mipmap/home_add" />
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="5dp"
+                android:src="@drawable/selector_add" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/home_privous"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/home_pious" />
+                android:src="@drawable/selector_prev" />
 
             <ImageView
+                android:id="@+id/home_player"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:paddingLeft="10dp"
-                android:src="@mipmap/home_pause" />
+                android:src="@drawable/vector_drawable_stop" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/home_reduce"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="12dp"
-                android:src="@mipmap/home_jian" />
+                android:paddingTop="10dp"
+                android:paddingBottom="12dp"
+                android:src="@drawable/selector_reduce" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/home_next"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/home_next" />
+                android:src="@drawable/selector_next" />
 
         </RelativeLayout>
 
         <ImageView
+            android:id="@+id/home_stop"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:src="@mipmap/close_ble" />
     </LinearLayout>
+
+    <!--重新连接-->
+    <RelativeLayout
+        android:id="@+id/home_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/home_error_connect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/solid_blue"
+                android:text="重新扫描设备"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/white"/>
+
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -11,7 +11,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -31,6 +32,12 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="*"
+                    android:textColor="@color/red_d8"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -40,12 +47,17 @@
                     android:textColor="@color/gray_4a"
                     android:textSize="14sp" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/service_et_province"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:hint="请选择省份"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -67,6 +79,12 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="*"
+                    android:textColor="@color/red_d8"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -76,12 +94,17 @@
                     android:textColor="@color/gray_4a"
                     android:textSize="14sp" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/service_et_city"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:hint="请选择城市"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -103,6 +126,12 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="*"
+                    android:textColor="@color/red_d8"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -112,12 +141,17 @@
                     android:textColor="@color/gray_4a"
                     android:textSize="14sp" />
 
-                <EditText
+                <TextView
+                    android:id="@+id/service_et_district"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:hint="请选择地区"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -149,11 +183,16 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/service_et_address"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:hint="请输入详细地址"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -175,43 +214,12 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp">
-
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="经销商代码"
-                    android:textColor="@color/gray_4a"
-                    android:textSize="14sp" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:hint="请输入经销商代码"
-                    android:textColor="@color/gray_4a"
-                    android:textColorHint="@color/gray_d0"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/gray_d0" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:paddingTop="15dp">
+                    android:layout_marginRight="5dp"
+                    android:text="*"
+                    android:textColor="@color/red_d8"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -222,14 +230,66 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/service_et_dls"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:hint="请输入代理商代码"
+                    android:hint="请输入代理商代码(指定代码)"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/gray_d0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="*"
+                    android:textColor="@color/red_d8"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="经销商代码"
+                    android:textColor="@color/gray_4a"
                     android:textSize="14sp" />
+
+                <EditText
+                    android:id="@+id/service_et_jxs"
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:hint="请输入经销商代码(指定代码)"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/gray_4a"
+                    android:textColorHint="@color/gray_d0"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -258,11 +318,16 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/service_et_bxk"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:hint="请输入保修卡卡号"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -296,11 +361,16 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/service_et_mdfw"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:hint="请输入门店服务代码"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -332,11 +402,16 @@
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/service_et_jcz"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:hint="请输入检查者姓名"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -350,43 +425,8 @@
                 android:layout_marginRight="20dp"
                 android:background="@color/gray_d0" />
 
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:background="@color/white"-->
-                <!--android:gravity="center_vertical"-->
-                <!--android:paddingLeft="20dp"-->
-                <!--android:paddingRight="20dp"-->
-                <!--android:paddingTop="15dp">-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="机器编码"-->
-                    <!--android:textColor="@color/gray_4a"-->
-                    <!--android:textSize="14sp" />-->
-
-                <!--<EditText-->
-                    <!--android:layout_width="0dp"-->
-                    <!--android:layout_weight="2"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:hint="请输入机器编码"-->
-                    <!--android:textColor="@color/gray_4a"-->
-                    <!--android:textColorHint="@color/gray_d0"-->
-                    <!--android:textSize="14sp" />-->
-
-            <!--</LinearLayout>-->
-
-            <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1dp"-->
-                <!--android:layout_marginLeft="20dp"-->
-                <!--android:layout_marginRight="20dp"-->
-                <!--android:background="@color/gray_d0" />-->
-
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -394,21 +434,31 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp"
+                    android:text="*"
+                    android:textColor="@color/red_d8"/>
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="机器唯一码"
+                    android:text="机器编码"
                     android:textColor="@color/gray_4a"
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/service_et_bm"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:hint="未绑定"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:hint="请输入机器编码"
+                    android:background="@null"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
@@ -433,6 +483,7 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:gravity="center_vertical"
+                android:visibility="gone"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
                 android:paddingTop="15dp">
@@ -441,19 +492,26 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="购置锻炼时间"
+                    android:text="机器唯一码"
                     android:textColor="@color/gray_4a"
                     android:textSize="14sp" />
 
                 <EditText
+                    android:id="@+id/service_et_wym"
                     android:layout_width="0dp"
                     android:layout_weight="2"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:hint=""
+                    android:hint="未绑定"
+                    android:background="@null"
+                    android:lines="1"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
                     android:textColor="@color/gray_4a"
                     android:textColorHint="@color/gray_d0"
                     android:textSize="14sp" />
+
+
 
             </LinearLayout>
 
@@ -463,6 +521,47 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@color/gray_d0" />
+
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="20dp"-->
+                <!--android:paddingRight="20dp"-->
+                <!--android:paddingTop="15dp">-->
+
+                <!--<TextView-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="购置锻炼时间"-->
+                    <!--android:textColor="@color/gray_4a"-->
+                    <!--android:textSize="14sp" />-->
+
+                <!--<EditText-->
+                    <!--android:id="@+id/service_et_time"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="2"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:hint=""-->
+                    <!--android:background="@null"-->
+                    <!--android:lines="1"-->
+                    <!--android:paddingTop="10dp"-->
+                    <!--android:paddingBottom="10dp"-->
+                    <!--android:textColor="@color/gray_4a"-->
+                    <!--android:textColorHint="@color/gray_d0"-->
+                    <!--android:textSize="14sp" />-->
+
+            <!--</LinearLayout>-->
+
+            <!--<View-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:background="@color/gray_d0" />-->
 
             <Button
                 android:id="@+id/user_info_commit"

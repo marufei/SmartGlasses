@@ -70,7 +70,7 @@ public class Codeutil {
             if (sTemp.length() < 2)
                 sb.append(0);
             sb.append(sTemp.toUpperCase());
-            Log.e("aaa","转成16进制的结果："+sb.toString());
+//            Log.e("aaa","转成16进制的结果："+sb.toString());
         }
         return sb.toString();
     }

@@ -43,6 +43,7 @@
                         android:layout_marginLeft="12dp"
                         android:textSize="14sp"/>
                     <TextView
+                        android:id="@+id/mine_device"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="#9b9b9b"
@@ -274,6 +275,7 @@
                     android:text="更多"
                     android:textSize="12sp"/>
                 <LinearLayout
+                    android:id="@+id/mine_pwd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -304,6 +306,7 @@
                     android:background="@color/gray_ee"/>
 
                 <LinearLayout
+                    android:id="@+id/update_version"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -334,6 +337,7 @@
                     android:background="@color/gray_ee"/>
 
                 <LinearLayout
+                    android:id="@+id/instruction"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
@@ -360,6 +364,16 @@
                 </LinearLayout>
 
         </LinearLayout>
+
+            <Button
+                android:id="@+id/mine_login_out"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/app_blue"
+                android:text="注销"
+                android:layout_margin="15dp"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
         </LinearLayout>
     </ScrollView>
 

@@ -9,36 +9,48 @@
 
     <include layout="@layout/view_title_bar"/>
 
-    <LinearLayout
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/use_device_rl"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="15dp"
-        android:gravity="center_vertical"
-        android:background="@color/white">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="总计："
-            android:textColor="@color/gray_3"
-            android:textSize="13sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="56"
-            android:textColor="@color/app_blue"
-            android:textSize="13sp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="次"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/gray_3"
-            android:textSize="13sp"/>
-    </LinearLayout>
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="15dp"
+                android:gravity="center_vertical"
+                android:background="@color/white">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总计："
+                    android:textColor="@color/gray_3"
+                    android:textSize="13sp"/>
+                <TextView
+                    android:id="@+id/use_device_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--"
+                    android:textColor="@color/app_blue"
+                    android:textSize="13sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="次"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/gray_3"
+                    android:textSize="13sp"/>
+            </LinearLayout>
 
-    <ListView
-        android:id="@+id/use_device_lv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:dividerHeight="0dp"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/use_device_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
 </LinearLayout>

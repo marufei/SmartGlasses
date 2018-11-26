@@ -27,6 +27,7 @@ import com.clj.fastble.scan.BleScanRuleConfig;
 import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.adapter.LvAdapter;
 import com.yxys365.smartglasses.utils.Codeutil;
+import com.yxys365.smartglasses.utils.MyUtils;
 import com.yxys365.smartglasses.utils.SecurityUtil;
 
 import java.util.ArrayList;
@@ -110,11 +111,11 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
                     for (BluetoothGattService service : serviceList) {
                         uuid_service = service.getUuid();
 
-                        Log.e(TAG, "uuid_service:" + uuid_service);
+                         MyUtils.Loge(TAG, "uuid_service:" + uuid_service);
                         List<BluetoothGattCharacteristic> characteristicList = service.getCharacteristics();
                         for (BluetoothGattCharacteristic characteristic : characteristicList) {
                             uuid_chara = characteristic.getUuid();
-                            Log.e(TAG, "uuid_chara:" + uuid_chara);
+                             MyUtils.Loge(TAG, "uuid_chara:" + uuid_chara);
                             if(uuid_chara.toString().equals("6e400002-b5a3-f393-e0a9-e50e24dcca9e")){
                                 sendChara=uuid_chara;
                             }
@@ -178,7 +179,7 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
                     //判断是否打开了蓝牙
                     if (BleManager.getInstance().isBlueEnable()) {
 //                        List<BleDevice> list = BleManager.getInstance().getAllConnectedDevice();
-//                        Log.e(TAG, "搜到的蓝牙个数：" + list.size());
+//                         MyUtils.Loge(TAG, "搜到的蓝牙个数：" + list.size());
 
                         if (checkGPSIsOpen()) {
                             setScanRule();
@@ -194,14 +195,14 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
                         startActivityForResult(intent, 0x01);
                     }
                 } else {
-                    Log.e(TAG, "当前设备不支持BLE");
+                     MyUtils.Loge(TAG, "当前设备不支持BLE");
                 }
                 break;
             case R.id.btn_success:
                 jiamiData("0066确认指令","5a5a006600131415161720212223242526279f");
                 break;
             case R.id.btn_dj:
-                jiamiData("启动电机","5a5a00e00213141516170100222324252627db");
+                jiamiData("启动电机","5a5a00e00213141516172800222324252627db");
                 break;
 
             case R.id.btn_add:
@@ -229,23 +230,23 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
                     @Override
                     public void onNotifySuccess() {
                         // 打开通知操作成功
-                        Log.e(TAG, "---onNotifySuccess");
+                         MyUtils.Loge(TAG, "---onNotifySuccess");
                         Toast.makeText(BLEActivity.this, "接收数据成功", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onNotifyFailure(BleException exception) {
                         // 打开通知操作失败
-                        Log.e(TAG, "---onNotifyFailure:" + exception.getDescription());
+                         MyUtils.Loge(TAG, "---onNotifyFailure:" + exception.getDescription());
                         Toast.makeText(BLEActivity.this, "接收数据失败", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
                     public void onCharacteristicChanged(byte[] data) {
                         // 打开通知后，设备发过来的数据将在这里出现
-                        Log.e(TAG, "---onCharacteristicChanged");
+                         MyUtils.Loge(TAG, "---onCharacteristicChanged");
                         if (data != null) {
-                            Log.e(TAG,"接收的数据："+ Codeutil.bytesToHexString(data));
+                             MyUtils.Loge(TAG,"接收的数据："+ Codeutil.bytesToHexString(data));
 
                             //TODO 解密接收到的数据
                             String ss=Codeutil.bytesToHexString(data);
@@ -254,7 +255,7 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
                             String str22 = ss.substring(ss.length() / 2, ss.length());
                             String notify_data = Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str11))) +
                                     Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str22)));
-                            Log.e(TAG, "----解密后的数据notify_data:" + notify_data);
+                             MyUtils.Loge(TAG, "----解密后的数据notify_data:" + notify_data);
 
                             Toast.makeText(BLEActivity.this, "接收到解密后的数据notify_data：" + notify_data, Toast.LENGTH_LONG).show();
                         } else {
@@ -302,23 +303,23 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
         BleManager.getInstance().scan(new BleScanCallback() {
             @Override
             public void onScanStarted(boolean success) {
-                Log.e(TAG, "success:" + success);
+                 MyUtils.Loge(TAG, "success:" + success);
             }
 
             @Override
             public void onLeScan(BleDevice bleDevice) {
                 super.onLeScan(bleDevice);
-                Log.e(TAG, "执行onLeScan:" + bleDevice.getMac());
+                 MyUtils.Loge(TAG, "执行onLeScan:" + bleDevice.getMac());
 //                if (list.size() > 0) {
 ////                    for (int i = 0; i < list.size(); i++) {
 ////
 ////                        if (!bleDevice.getMac().equals(list.get(i).getMac())) {
-////                            Log.e(TAG,"i"+i+"-----bleDevice.getmac():"+bleDevice.getMac()+"--list.get(i).getMac():"+list.get(i).getMac());
+////                             MyUtils.Loge(TAG,"i"+i+"-----bleDevice.getmac():"+bleDevice.getMac()+"--list.get(i).getMac():"+list.get(i).getMac());
 ////                            list.add(bleDevice);
 ////                        }
 ////                    }
 //                    if(!listMac.contains(bleDevice.getMac())){
-//                        Log.e(TAG,"-----bleDevice.getmac():"+bleDevice.getMac()+"--listMac.size()::"+listMac.size());
+//                         MyUtils.Loge(TAG,"-----bleDevice.getmac():"+bleDevice.getMac()+"--listMac.size()::"+listMac.size());
 //
 //                        list.add(bleDevice);
 //                    }
@@ -331,10 +332,10 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
                 if(listMac.size()>0) {
                     for (int i = 0; i < listMac.size(); i++) {
                         if (listMac.contains(bleDevice.getMac())) {
-                            Log.e(TAG, "listMac.size():" + listMac.size());
+                             MyUtils.Loge(TAG, "listMac.size():" + listMac.size());
                         } else {
                             listMac.add(bleDevice.getMac());
-                            Log.e(TAG, "----listMac.size():" + listMac.size());
+                             MyUtils.Loge(TAG, "----listMac.size():" + listMac.size());
                             list.add(bleDevice);
                         }
                     }
@@ -347,13 +348,13 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
 
             @Override
             public void onScanning(BleDevice bleDevice) {
-                Log.e(TAG, "bleDevice:" + bleDevice.getMac());
+                 MyUtils.Loge(TAG, "bleDevice:" + bleDevice.getMac());
             }
 
             @Override
             public void onScanFinished(List<BleDevice> scanResultList) {
 
-                Log.e(TAG, "最终搜索到的蓝牙设备:" + list.size());
+                 MyUtils.Loge(TAG, "最终搜索到的蓝牙设备:" + list.size());
                 if (adapter == null) {
                     adapter = new LvAdapter(BLEActivity.this, list);
                     list_show.setAdapter(adapter);
@@ -376,32 +377,33 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
             BleManager.getInstance().connect(bleDevice, new BleGattCallback() {
                 @Override
                 public void onStartConnect() {
-                    Log.e(TAG, "onStartConnect");
+                     MyUtils.Loge(TAG, "onStartConnect");
                 }
 
                 @Override
                 public void onConnectFail(BleDevice bleDevice, BleException exception) {
-                    Log.e(TAG, "onConnectFail");
+                     MyUtils.Loge(TAG, "onConnectFail");
                     Toast.makeText(BLEActivity.this,"连接蓝牙失败",Toast.LENGTH_LONG).show();
                 }
 
                 @Override
                 public void onConnectSuccess(BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                    Log.e(TAG, "onConnectSuccess--mac地址：" + bleDevice.getMac());
+                     MyUtils.Loge(TAG, "onConnectSuccess--mac地址：" + bleDevice.getMac());
                     gattBLE = gatt;
 
                     List<BluetoothGattService> serviceList = gatt.getServices();
                     for (BluetoothGattService service : serviceList) {
                         uuid_service = service.getUuid();
 
-                        Log.e(TAG, "uuid_service:" + uuid_service);
+                         MyUtils.Loge(TAG, "uuid_service:" + uuid_service);
                         List<BluetoothGattCharacteristic> characteristicList = service.getCharacteristics();
                         for (BluetoothGattCharacteristic characteristic : characteristicList) {
                             uuid_chara = characteristic.getUuid();
                             if(uuid_chara.toString().equals("6e400003-b5a3-f393-e0a9-e50e24dcca9e")){
                                 notifyChara=uuid_chara;
                             }
-                            Log.e(TAG, "notifyChara:" + notifyChara);
+                             MyUtils.Loge(TAG,"uuid_chara:"+uuid_chara);
+                             MyUtils.Loge(TAG, "notifyChara:" + notifyChara);
                         }
 
                     }
@@ -419,7 +421,7 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
 
                 @Override
                 public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                    Log.e(TAG, "onDisConnected");
+                     MyUtils.Loge(TAG, "onDisConnected");
 
                 }
             });
@@ -440,19 +442,19 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
                         @Override
                         public void onWriteSuccess(int current, int total, byte[] justWrite) {
                             // 发送数据到设备成功（分包发送的情况下，可以通过方法中返回的参数可以查看发送进度）
-                            Log.e(TAG, "onWriteSuccess-------------");
+                             MyUtils.Loge(TAG, "onWriteSuccess-------------");
                             Toast.makeText(BLEActivity.this, "发送数据成功", Toast.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onWriteFailure(BleException exception) {
                             // 发送数据到设备失败
-                            Log.e(TAG, "onWriteFailure-------------");
+                             MyUtils.Loge(TAG, "onWriteFailure-------------");
                             Toast.makeText(BLEActivity.this, "发送数据失败：" + exception.getDescription(), Toast.LENGTH_LONG).show();
                         }
                     });
         } else {
-            Log.e(TAG, "s是空值");
+             MyUtils.Loge(TAG, "s是空值");
         }
     }
 
@@ -461,7 +463,7 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 0x01:
-                Log.e(TAG, "蓝牙已经打开------");
+                 MyUtils.Loge(TAG, "蓝牙已经打开------");
                 if (checkGPSIsOpen()) {
                     setScanRule();
                     startScan();
@@ -485,7 +487,7 @@ public class BLEActivity extends CheckPermissionsActivity implements View.OnClic
         s = "5A5A" + Codeutil.bytesToHexString(SecurityUtil.encryptJNI(Codeutil.hexStringToByte(str1))) +
                 Codeutil.bytesToHexString(SecurityUtil.encryptJNI(Codeutil.hexStringToByte(str2)));
         s = s + Codeutil.getNum(s);
-        Log.e(TAG, type+"----加密后的数据-s:" + s);
+         MyUtils.Loge(TAG, type+"----加密后的数据-s:" + s);
 
     }
 

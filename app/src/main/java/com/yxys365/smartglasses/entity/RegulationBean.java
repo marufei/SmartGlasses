@@ -16,10 +16,10 @@ public class RegulationBean {
 
     @Override
     public String toString() {
-        return "positive_regulation:\"" + positive_regulation + '\"' +
-                ", negative_regulation\"" + negative_regulation + '\"' +
-                ", positive_fine_regulation\"" + positive_fine_regulation + '\"' +
-                ", negative_fine_regulation\"" + negative_fine_regulation + '\"' +
+        return    "{\"positive_regulation\":\"" + positive_regulation + '\"' +
+                ", \"negative_regulation\":\"" + negative_regulation + '\"' +
+                ", \"positive_fine_regulation\":\"" + positive_fine_regulation + '\"' +
+                ", \"negative_fine_regulation\":\"" + negative_fine_regulation + '\"' +
                 '}';
     }
 

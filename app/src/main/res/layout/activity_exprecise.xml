@@ -23,11 +23,13 @@
             android:textColor="@color/gray_4a"
             android:text="本次锻炼方案"
             android:textSize="14sp" />
+
         <TextView
+            android:id="@+id/exprecise_plan_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="--"
             android:textColor="@color/gray_4a"
-            android:text="5"
             android:textSize="14sp" />
     </LinearLayout>
     <View
@@ -47,10 +49,11 @@
             android:text="锻炼预案时间"
             android:textSize="14sp" />
         <TextView
+            android:id="@+id/exprecise_plan_time1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gray_4a"
-            android:text="40分"
+            android:text="--"
             android:textSize="14sp" />
     </LinearLayout>
     <View
@@ -71,9 +74,10 @@
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/exprecise_plan_time2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="30分"
+            android:text="--"
             android:textColor="@color/gray_4a"
             android:textSize="14sp" />
     </LinearLayout>
@@ -94,10 +98,11 @@
             android:text="已锻炼总时长"
             android:textSize="14sp" />
         <TextView
+            android:id="@+id/exprecise_plan_time3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gray_4a"
-            android:text="12小时15分"
+            android:text="--"
             android:textSize="14sp" />
     </LinearLayout>
     <View
@@ -117,10 +122,11 @@
             android:text="目镜更换情况"
             android:textSize="14sp" />
         <TextView
+            android:id="@+id/exprecise_plan_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/gray_4a"
-            android:text="目镜5"
+            android:text="--"
             android:textSize="14sp" />
     </LinearLayout>
     <View
@@ -140,10 +146,11 @@
             android:text="佩戴评价"
             android:textSize="14sp" />
         <TextView
+            android:id="@+id/exprecise_plan_pj"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#FB4D3D"
-            android:text="佩戴不正确"
+            android:text="--"
             android:textSize="14sp" />
     </LinearLayout>
     <View

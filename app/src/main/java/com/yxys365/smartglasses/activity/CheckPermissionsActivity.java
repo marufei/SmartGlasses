@@ -17,6 +17,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.yxys365.smartglasses.utils.MyUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +42,9 @@ public class CheckPermissionsActivity extends BaseActivity {
             Manifest.permission.ACCESS_COARSE_LOCATION,
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.VIBRATE,
-            Manifest.permission.CAMERA
-//            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-//            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
 //            Manifest.permission.READ_PHONE_STATE
     };
 
@@ -60,7 +62,7 @@ public class CheckPermissionsActivity extends BaseActivity {
     }
 
     public void setPermission() {
-        Log.e(TAG, "进入----setPermission方法");
+         MyUtils.Loge(TAG, "进入----setPermission方法");
         if (Build.VERSION.SDK_INT >= 23
                 && getApplicationInfo().targetSdkVersion >= 23) {
             if (isNeedCheck) {
@@ -75,7 +77,7 @@ public class CheckPermissionsActivity extends BaseActivity {
      * @since 2.5.0
      */
     private void checkPermissions(String... permissions) {
-        Log.e(TAG, "进入------checkPermissions方法");
+         MyUtils.Loge(TAG, "进入------checkPermissions方法");
         try {
             if (Build.VERSION.SDK_INT >= 23
                     && getApplicationInfo().targetSdkVersion >= 23) {
@@ -96,7 +98,7 @@ public class CheckPermissionsActivity extends BaseActivity {
                     ActivityCompat.requestPermissions(this,
                             needRequestPermissonList.toArray(new String[needRequestPermissonList.size()]),
                             PERMISSON_REQUESTCODE);
-                    Log.e(TAG,"requestPermissions方法执行-------");
+                     MyUtils.Loge(TAG,"requestPermissions方法执行-------");
                 }
             }
         } catch (Throwable e) {
@@ -111,7 +113,7 @@ public class CheckPermissionsActivity extends BaseActivity {
      * @since 2.5.0
      */
     private List<String> findDeniedPermissions(String[] permissions) {
-        Log.e(TAG, "进入-----findDeniedPermissions方法");
+         MyUtils.Loge(TAG, "进入-----findDeniedPermissions方法");
 //        List<String> needRequestPermissonList = new ArrayList<String>();
 //        if (Build.VERSION.SDK_INT >= 23
 //                && getApplicationInfo().targetSdkVersion >= 23) {
@@ -164,11 +166,11 @@ public class CheckPermissionsActivity extends BaseActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Log.e(TAG,"进入权限回调方法");
+         MyUtils.Loge(TAG,"进入权限回调方法");
         if (requestCode == PERMISSON_REQUESTCODE) {
-            Log.e(TAG,"进入权限回调方法1");
+             MyUtils.Loge(TAG,"进入权限回调方法1");
             if (!verifyPermissions(grantResults)) {
-                Log.e(TAG,"进入权限回调方法2");
+                 MyUtils.Loge(TAG,"进入权限回调方法2");
                 showMissingPermissionDialog();
                 isNeedCheck = false;
             }

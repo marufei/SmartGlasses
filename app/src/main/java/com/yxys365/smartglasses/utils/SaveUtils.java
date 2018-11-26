@@ -63,7 +63,7 @@ public class SaveUtils {
      */
     public static int getInt(String key) {
         SharedPreferences settings = MyApplication.getInstance().getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
-        return settings.getInt(key, -1);
+        return settings.getInt(key, 0);
 
     }
 
@@ -136,4 +136,6 @@ public class SaveUtils {
         SharedPreferences settings = MyApplication.getInstance().getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         return settings.getBoolean(key, false);
     }
+
+
 }

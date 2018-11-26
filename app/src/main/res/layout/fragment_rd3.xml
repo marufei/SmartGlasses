@@ -88,7 +88,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/fragment_rd3_ftj"
@@ -103,7 +103,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/fragment_rd3_zjing"
@@ -117,7 +117,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="300"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/fragment_rd3_fjing"
@@ -132,7 +132,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="1000"
+                android:text="--"
                 android:textColor="@color/white"/>
         </LinearLayout>
 
@@ -150,6 +150,7 @@
         android:layout_marginLeft="60dp"
         android:layout_marginRight="60dp"
         android:layout_marginBottom="30dp"
+        android:visibility="gone"
         android:background="@drawable/solid_blue"
         android:text="下一步"
         android:textColor="@color/white"/>

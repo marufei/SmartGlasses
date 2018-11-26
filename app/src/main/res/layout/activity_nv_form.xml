@@ -99,6 +99,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/nv_version_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -107,11 +108,12 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:gravity="center"
                 android:paddingRight="10dp"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/nv_version_right"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -121,11 +123,12 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
-                android:text="300"
+                android:text="--"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/nv_version_double"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -135,7 +138,7 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
-                android:text="1000"
+                android:text="--"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>
@@ -160,6 +163,7 @@
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/nv_num_left"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -168,11 +172,12 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:gravity="center"
                 android:paddingRight="10dp"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/nv_num_right"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -182,11 +187,12 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
-                android:text="300"
+                android:text="--"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
 
             <TextView
+                android:id="@+id/nv_num_double"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="1dp"
@@ -196,21 +202,21 @@
                 android:gravity="center"
                 android:paddingLeft="15dp"
                 android:paddingRight="10dp"
-                android:text="1000"
+                android:text="--"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 
-    <Button
-        android:id="@+id/fragment_nv_next"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:layout_marginTop="150dp"
-        android:background="@drawable/solid_blue"
-        android:text="下一步"
-        android:textColor="@color/white" />
+    <!--<Button-->
+        <!--android:id="@+id/fragment_nv_next"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:layout_marginLeft="60dp"-->
+        <!--android:layout_marginRight="60dp"-->
+        <!--android:layout_marginTop="150dp"-->
+        <!--android:background="@drawable/solid_blue"-->
+        <!--android:text="下一步"-->
+        <!--android:textColor="@color/white" />-->
 
 </LinearLayout>

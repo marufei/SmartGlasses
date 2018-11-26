@@ -2,7 +2,10 @@ package com.yxys365.smartglasses.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -14,8 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.clj.fastble.BleManager;
 import com.yxys365.smartglasses.MyApplication;
 import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.adapter.MainVpAdapter;
@@ -29,7 +34,7 @@ import com.yxys365.smartglasses.utils.SecurityUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener ,View.OnClickListener{
+public class MainActivity extends CheckPermissionsActivity implements RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener, View.OnClickListener {
 
     private Button operate;
     private String TAG = "MainActivity";
@@ -48,17 +53,42 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     long[] mHits = new long[2];
     boolean showToast = true;
     private RadioButton rb4;
+    private static TextView home_menu;
+    public static Handler mHandler = new Handler() {
+        /**
+         * handleMessage接收消息后进行相应的处理
+         * @param msg
+         */
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if (msg.what == 1) {
+                home_menu.setText("已连接");
+                Drawable connect_y = mainActivity.getResources().getDrawable(R.mipmap.connect_y);
+                connect_y.setBounds(0, 0, connect_y.getMinimumWidth(), connect_y.getMinimumHeight());
+                home_menu.setCompoundDrawables(null, null, connect_y, null);
+            } else {
+                home_menu.setText("未连接");
+                Drawable connect_n = mainActivity.getResources().getDrawable(R.mipmap.connect_n);
+                connect_n.setBounds(0, 0, connect_n.getMinimumWidth(), connect_n.getMinimumHeight());
+                home_menu.setCompoundDrawables(null, null, connect_n, null);
+            }
+        }
+    };
+    public static MainActivity mainActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("title");
-        setBack(false);
-        setMenu(R.mipmap.connect_y,"已连接");
+        setPermission();
+        setDarkStatusIcon(true);
+        mainActivity=this;
         initViews();
         initeven();
     }
+
 
     public static void start(Context context) {
         Intent intent = new Intent();
@@ -67,46 +97,15 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
     }
 
     private void initViews() {
-//        operate = findViewById(R.id.operate);
-//        operate.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//////                byte [] bytes= Codeutil.hexStringToByte("5a5a00ee001314151617202122232425262727");
-//////                byte [] aaa= SecurityUtil.encryptJNI(bytes);
-////                Log.e(TAG, "------点击了按钮");
-////
-////                String str = "00FF067071727374E3E3E3E3E3E37575";
-//////                str = str.substring(4, str.length() - 2);
-////
-////        String str1 = str.substring(0, str.length() / 2);
-////                String str2 = str.substring(str.length() / 2, str.length());
-////                Log.e(TAG, "---str:" + str);
-////                Log.e(TAG, "---str1:" + str1);
-////                Log.e(TAG, "---str2:" + str2);
-////
-////                String s = "5A5A" + Codeutil.bytesToHexString(SecurityUtil.encryptJNI(Codeutil.hexStringToByte(str1))) +
-////                        Codeutil.bytesToHexString(SecurityUtil.encryptJNI(Codeutil.hexStringToByte(str2)));
-////                s = s + Codeutil.getNum(s);
-////
-////                Log.e(TAG, "------s:" + s);
-//
-//                String str = "5a5a00ee001314151617202122232425262727";  //5A5A8A37FA67FAC9A768ED3389B4DFCA8276A6
-//                str = str.substring(4, str.length() - 2);
-//                String str1 = str.substring(0, str.length() / 2);
-//                String str2 = str.substring(str.length() / 2, str.length());
-//                String s = Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str1))) +
-//                        Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str2)));
-//                Log.e(TAG, "----s:" + s);
-//            }
-//        });
-
         vp_show = findViewById(R.id.vp_show);
         rb0 = findViewById(R.id.rb0);
         rb1 = findViewById(R.id.rb1);
         rb3 = findViewById(R.id.rb3);
-        rb4=findViewById(R.id.rb4);
+        rb4 = findViewById(R.id.rb4);
         ll_bottom = findViewById(R.id.ll_bottom);
         rg_bottom = findViewById(R.id.rg_bottom);
+
+        home_menu = findViewById(R.id.home_menu);
     }
 
     private void initeven() {
@@ -128,6 +127,7 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
         rg_bottom.setOnCheckedChangeListener(this);
         vp_show.setAdapter(new MainVpAdapter(getSupportFragmentManager()));
         vp_show.setCurrentItem(0);
+        vp_show.setOffscreenPageLimit(3);
         vp_show.addOnPageChangeListener(this);
     }
 
@@ -193,22 +193,24 @@ public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedCh
             showToast = true;
         }
         if (showToast) {
-            Toast.makeText(MainActivity.this,"再按一次退出程序",Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "再按一次退出程序", Toast.LENGTH_LONG).show();
             showToast = false;
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
     }
 
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.menu:
                 break;
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        BleManager.getInstance().disconnectAllDevice();
+        BleManager.getInstance().destroy();
     }
 }

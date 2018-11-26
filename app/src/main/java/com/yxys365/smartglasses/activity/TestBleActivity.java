@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.clj.fastble.BleManager;
 import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.utils.Codeutil;
+import com.yxys365.smartglasses.utils.MyUtils;
 import com.yxys365.smartglasses.utils.SecurityUtil;
 
 
@@ -77,7 +78,7 @@ public class TestBleActivity extends AppCompatActivity implements View.OnClickLi
                         Codeutil.bytesToHexString(SecurityUtil.encryptJNI(Codeutil.hexStringToByte(str2)));
                 sendData = sendData + Codeutil.getNum(sendData);
 
-                Log.e(TAG, "------加密后的数据:" + sendData);
+                 MyUtils.Loge(TAG, "------加密后的数据:" + sendData);
                 break;
             case R.id.btn3:
                 //TODO 设置测试的解密数据
@@ -87,7 +88,7 @@ public class TestBleActivity extends AppCompatActivity implements View.OnClickLi
                 String str22 = ss.substring(ss.length() / 2, ss.length());
                 String data = Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str11))) +
                         Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str22)));
-                Log.e(TAG, "----解密后的数据-s:" + data);
+                 MyUtils.Loge(TAG, "----解密后的数据-s:" + data);
                 break;
             case R.id.btn4:
                 if(!TextUtils.isEmpty(sendData)) {

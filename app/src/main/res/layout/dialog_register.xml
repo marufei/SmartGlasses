@@ -44,6 +44,7 @@
             android:textSize="15sp"
             android:textColor="@color/gray_4a"/>
             <TextView
+                android:id="@+id/dialog_register_tel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="xxxxxxxxxx"
@@ -62,6 +63,7 @@
                 android:textSize="15sp"
                 android:textColor="@color/gray_4a"/>
             <TextView
+                android:id="@+id/dialog_register_pwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="xxxxxxxxxx"

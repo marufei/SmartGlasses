@@ -125,7 +125,7 @@ public class UserInfo2Activity extends BaseActivity implements View.OnClickListe
 
                     }else {
                         String msg=jsonObject.getString("msg");
-                        MyUtils.showToast(UserInfo2Activity.this,msg);
+                        VolleyUtils.dealErrorStatus(UserInfo2Activity.this,code,msg);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

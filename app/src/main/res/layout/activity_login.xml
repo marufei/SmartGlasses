@@ -34,12 +34,14 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/login_tel"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="请输入手机号"
                 android:inputType="number"
                 android:maxLength="11"
+                android:textColor="@color/gray_3"
                 android:textColorHint="@color/gray_d0"
                 android:textSize="15sp" />
 
@@ -73,12 +75,14 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/login_pwd"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
                 android:hint="请输入密码"
                 android:inputType="textPassword"
                 android:maxLength="11"
+                android:textColor="@color/gray_3"
                 android:textColorHint="@color/gray_d0"
                 android:textSize="15sp" />
 
@@ -93,6 +97,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/login_in"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@drawable/solid_blue"

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,11 +25,17 @@ import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.configs.HttpsAddress;
 import com.yxys365.smartglasses.entity.Register1Bean;
 import com.yxys365.smartglasses.entity.Register1Entity;
+import com.yxys365.smartglasses.utils.KeyUtils;
 import com.yxys365.smartglasses.utils.MyUtils;
+import com.yxys365.smartglasses.utils.SaveUtils;
 import com.yxys365.smartglasses.utils.SmsTimeUtils;
+import com.yxys365.smartglasses.utils.SoftHideKeyBoardUtil;
 import com.yxys365.smartglasses.utils.VolleyUtils;
 import com.yxys365.smartglasses.views.DialogBottomView;
 import com.yxys365.smartglasses.widget.CustomDatePicker;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
@@ -56,6 +63,9 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     private String doc_type;
     private String sex;
     private CustomDatePicker customDatePicker;
+    private EditText user_info_et_parent;
+    private EditText user_info_et_wx;
+    private Register1Bean register1Bean = new Register1Bean();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,6 +137,9 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         user_info_iv_card.setOnClickListener(this);
         user_info_et_card.setOnClickListener(this);
         user_info_et_card_number = findViewById(R.id.user_info_et_card_number);
+
+        user_info_et_parent=findViewById(R.id.user_info_et_parent);
+        user_info_et_wx=findViewById(R.id.user_info_et_wx);
     }
 
     public static void start(Context context) {
@@ -153,7 +166,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     return;
                 }
                 if (TextUtils.isEmpty(user_info_et_name.getText().toString())) {
-                    MyUtils.showToast(UserInfoActivity.this, "请先输入姓名");
+                    MyUtils.showToast(UserInfoActivity.this, "请先输入孩子姓名");
                     return;
                 }
                 if (TextUtils.isEmpty(sex)) {
@@ -164,29 +177,39 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     MyUtils.showToast(UserInfoActivity.this, "请先输入生日");
                     return;
                 }
-                if (TextUtils.isEmpty(doc_type)) {
-                    MyUtils.showToast(UserInfoActivity.this, "请先选择证件类型");
+//                if (TextUtils.isEmpty(doc_type)) {
+//                    MyUtils.showToast(UserInfoActivity.this, "请先选择证件类型");
+//                    return;
+//                }
+
+//                if (TextUtils.isEmpty(user_info_et_card_number.getText().toString())) {
+//                    MyUtils.showToast(UserInfoActivity.this, "请先输入证件号码");
+//                    return;
+//                }
+
+                if(TextUtils.isEmpty(user_info_et_parent.getText().toString())){
+                    MyUtils.showToast(UserInfoActivity.this,"请先输入监护人姓名");
                     return;
                 }
 
-                if (TextUtils.isEmpty(user_info_et_card_number.getText().toString())) {
-                    MyUtils.showToast(UserInfoActivity.this, "请先输入证件号码");
+                if(TextUtils.isEmpty(user_info_et_wx.getText().toString())){
+                    MyUtils.showToast(UserInfoActivity.this,"请先输入监护人微信号");
                     return;
                 }
 
-
-                Register1Bean register1Bean = new Register1Bean();
                 register1Bean.setTel(user_info_et_phone.getText().toString().trim());
                 register1Bean.setPassword(user_info_et_pwd.getText().toString().trim());
                 register1Bean.setVercode(user_info_et_code.getText().toString().trim());
                 register1Bean.setName(user_info_et_name.getText().toString().trim());
                 register1Bean.setSex(sex);
-                register1Bean.setDoc_type(doc_type);
+//                register1Bean.setDoc_type(doc_type);
                 register1Bean.setBirthday(user_info_tv_date.getText().toString());
-                register1Bean.setDoc_number(user_info_et_card_number.getText().toString().trim());
+//                register1Bean.setDoc_number(user_info_et_card_number.getText().toString().trim());
+                register1Bean.setWechat(user_info_et_wx.getText().toString());
+                register1Bean.setGuardian_name(user_info_et_parent.getText().toString());
                 MyUtils.Loge(TAG,"register1Bean----1-----:"+register1Bean.toString());
-                UserInfo2Activity.start(this,register1Bean);
-
+//                UserInfo2Activity.start(this,register1Bean);
+                getStep1Result();
                 break;
             case R.id.user_info_tv_code:
                 if (!TextUtils.isEmpty(user_info_et_phone.getText().toString())) {
@@ -218,13 +241,17 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             @Override
             public void onResponse(String response) {
                 MyUtils.Loge(TAG, "response:" + response);
-                Gson gson = new Gson();
-                Register1Entity register1Entity = gson.fromJson(response, Register1Entity.class);
-                if (register1Entity.code == 0) {
-                    SmsTimeUtils.check(SmsTimeUtils.SETTING_FINANCE_ACCOUNT_TIME, false);
-                    SmsTimeUtils.startCountdown(user_info_tv_code);
-                } else {
-                    MyUtils.showToast(UserInfoActivity.this, register1Entity.msg);
+                try {
+                    Gson gson = new Gson();
+                    Register1Entity register1Entity = gson.fromJson(response, Register1Entity.class);
+                    if (register1Entity.getCode() == 0) {
+                        SmsTimeUtils.check(SmsTimeUtils.SETTING_FINANCE_ACCOUNT_TIME, false);
+                        SmsTimeUtils.startCountdown(user_info_tv_code);
+                    } else {
+                        MyUtils.showToast(UserInfoActivity.this, register1Entity.getMsg());
+                    }
+                }catch (Exception e){
+
                 }
 
             }
@@ -276,6 +303,62 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             }
         });
         dialogBottomView.showDialog();
+    }
+
+    /**
+     * 注册第一步请求
+     */
+    private void getStep1Result() {
+        String url = HttpsAddress.BASE_ADDRESS + HttpsAddress.REGISTER1;
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                MyUtils.Loge(TAG,"response:"+response);
+                try {
+                    JSONObject jsonObject=new JSONObject(response);
+                    int code = jsonObject.getInt("code");
+                    if(code==0){
+                        String register_code=jsonObject.getString("register_code");
+                        SaveUtils.setString(KeyUtils.register_code,register_code);
+                        NvActivity.start(UserInfoActivity.this);
+
+                    }else {
+                        String msg=jsonObject.getString("msg");
+                        VolleyUtils.dealErrorStatus(UserInfoActivity.this,code,msg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                MyUtils.showToast(UserInfoActivity.this, "网络有问题");
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("tel", register1Bean.getTel());
+                map.put("password", register1Bean.getPassword());
+                map.put("password_confirmation", register1Bean.getPassword());
+                map.put("vercode", register1Bean.getVercode());
+                map.put("name", register1Bean.getName());
+                map.put("sex", register1Bean.getSex());
+                map.put("birthday", register1Bean.getBirthday());
+//                map.put("doc_type", register1Bean.getDoc_type());
+//                map.put("doc_number", register1Bean.getDoc_number());
+                map.put("wechat",register1Bean.getWechat());
+//                map.put("email",register1Bean.getEmail());
+                map.put("guardian_name",register1Bean.getGuardian_name());
+//                map.put("guardian_tel",register1Bean.getGuardian_tel());
+                return map;
+            }
+        };
+
+        VolleyUtils.setTimeOut(stringRequest);
+        VolleyUtils.getInstance(UserInfoActivity.this).addToRequestQueue(stringRequest);
     }
 
 

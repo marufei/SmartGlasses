@@ -2,15 +2,14 @@ package com.yxys365.smartglasses.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.adapter.MyTabAdapter;
-import com.yxys365.smartglasses.entity.Register2Bean;
+import com.yxys365.smartglasses.fragment.Nv2Fragment;
 import com.yxys365.smartglasses.fragment.NvFragment;
 import com.yxys365.smartglasses.utils.MyUtils;
 
@@ -25,10 +24,7 @@ public class NvActivity extends BaseActivity {
     private TabLayout nv_tab;
     private ViewPager nv_vp;
     public String TAG = "NvActivity";
-    /**
-     * 视力类型
-     */
-    public static String vision_type="1";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,37 +40,37 @@ public class NvActivity extends BaseActivity {
 
     private void initEvent() {
 
-        nv_vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                MyUtils.Loge(TAG,"position:"+position);
-                switch (position) {
-                    case 0:
-                        vision_type = "1";
-                        break;
-                    case 1:
-                        vision_type = "2";
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
+//        nv_vp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//                MyUtils.Loge(TAG,"position:"+position);
+//                switch (position) {
+//                    case 0:
+//                        vision_type = "1";
+//                        break;
+//                    case 1:
+//                        vision_type = "2";
+//                        break;
+//                }
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
     }
 
     private void initDatas() {
         //装载Fragment
         List<Fragment> fragmentList = new ArrayList<>();
         NvFragment nvFragment = new NvFragment();
-        NvFragment nvFragment2 = new NvFragment();
+        Nv2Fragment nvFragment2 = new Nv2Fragment();
         fragmentList.add(nvFragment);
         fragmentList.add(nvFragment2);
 

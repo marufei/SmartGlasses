@@ -8,10 +8,12 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -24,11 +26,11 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:elevation="3dp"
-                    android:background="@drawable/solid_white"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@drawable/solid_white"
+                    android:elevation="3dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -40,9 +42,11 @@
                         android:gravity="center_vertical">
 
                         <ImageView
+                            android:id="@+id/yc_header"
                             android:layout_width="60dp"
                             android:layout_height="60dp"
-                            android:src="@mipmap/mine_header"/>
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/mine_header" />
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -52,22 +56,25 @@
                             android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/yc_name"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="张毅"
+                                android:text="--"
                                 android:textColor="@color/gray_4a"
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:id="@+id/yc_birth"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="3dp"
-                                android:text="2000-09-18"
+                                android:text="--"
                                 android:textColor="@color/gray_4a"
                                 android:textSize="14sp" />
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/yc_status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/solid_blue"
@@ -75,114 +82,131 @@
                             android:paddingLeft="15dp"
                             android:paddingRight="15dp"
                             android:paddingTop="5dp"
-                            android:textSize="12sp"
+                            android:text="锻炼中"
                             android:textColor="@color/white"
-                            android:text="锻炼中" />
+                            android:textSize="12sp"
+                            android:visibility="gone" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
                         android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginLeft="22dp">
+                        android:gravity="center_vertical">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/fragment_type"/>
+                            android:src="@mipmap/fragment_type" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="开始时间："
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
+
                         <TextView
+                            android:id="@+id/yc_start"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="2081.06.02"
+                            android:text="--"
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="22dp"
                         android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
-                        android:layout_marginLeft="22dp">
+                        android:gravity="center_vertical">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/fragment_type"/>
+                            android:src="@mipmap/fragment_type" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="锻炼时长："
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
+
                         <TextView
+                            android:id="@+id/yc_all_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="34小时42分钟"
+                            android:text="--"
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
+                        android:layout_marginLeft="22dp"
                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="22dp">
+                        android:gravity="center_vertical">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/fragment_type"/>
+                            android:src="@mipmap/fragment_type" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="上次锻炼时间："
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
+
                         <TextView
+                            android:id="@+id/yc_once_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="30分钟"
+                            android:text="--"
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center_vertical"
                         android:layout_marginBottom="30dp"
-                        android:layout_marginLeft="22dp">
+                        android:layout_marginLeft="22dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical">
+
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@mipmap/fragment_type"/>
+                            android:src="@mipmap/fragment_type" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="剩余购置锻炼时间："
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
+
                         <TextView
+                            android:id="@+id/yc_last_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:text="20天"
+                            android:text="--"
                             android:textColor="@color/gray_4a"
-                            android:textSize="14sp"/>
+                            android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
             </RelativeLayout>
@@ -193,332 +217,455 @@
                 android:layout_marginTop="15dp"
                 android:elevation="3dp"
                 android:orientation="vertical">
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="21dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
                     android:background="@color/white"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="21dp"
+                    android:paddingTop="12dp">
+
                     <View
                         android:layout_width="6dp"
                         android:layout_height="17dp"
-                        android:background="@color/app_blue"/>
+                        android:background="@color/app_blue" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
                         android:text="屈光检测情况"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_4a"/>
+                        android:textColor="@color/gray_4a"
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/gray_ed">
+
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
                         android:text="裸眼视力"
-                        android:textSize="12sp"/>
+                        android:textColor="@color/gray_4a"
+                        android:textSize="12sp" />
 
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
                         android:text="球镜"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
                         android:text="柱镜"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
                         android:text="轴位"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
                         android:text="矫正视力"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
                         android:text="视标数"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="左眼(L)"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:text="0.3"
-                        android:textSize="12sp"/>
 
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="左眼(L)"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
-                    <TextView
+                        android:textSize="12sp" />
+
+                    <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/yc_left_vision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="--"
+                            android:textColor="@color/gray_4a"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/yc_left_vision_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="13dp"
+                            android:text="--"
+                            android:textColor="@color/gray_4a"
+                            android:textSize="9sp" />
+                    </RelativeLayout>
+
                     <TextView
+                        android:id="@+id/yc_left_sph"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/yc_left_cyl"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/yc_left_ax"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/yc_left_j_vision"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp"
+                        android:text="--"
+                        android:textColor="@color/gray_4a"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/yc_left_num"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp"
+                        android:text="--"
+                        android:textColor="@color/gray_4a"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/gray_ed">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="右眼(R)"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:text="0.3"
-                        android:textSize="12sp"/>
 
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="右眼(R)"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
-                    <TextView
+                        android:textSize="12sp" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/yc_right_vision"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:paddingBottom="20dp"-->
+                    <!--android:paddingTop="20dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/gray_4a"-->
+                    <!--android:text="&#45;&#45;"-->
+                    <!--android:textSize="12sp"/>-->
+                    <!--<RelativeLayout-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_height="match_parent">-->
+                    <!--<TextView-->
+                    <!--android:id="@+id/yc_right_vision"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:textColor="@color/gray_4a"-->
+                    <!--android:text="&#45;&#45;"-->
+                    <!--android:textSize="12sp"/>-->
+
+                    <!--</RelativeLayout>-->
+
+                    <RelativeLayout
                         android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/yc_right_vision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="--"
+                            android:textColor="@color/gray_4a"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/yc_right_vision_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="13dp"
+                            android:text="--"
+                            android:textColor="@color/gray_4a"
+                            android:textSize="9sp" />
+                    </RelativeLayout>
+
                     <TextView
+                        android:id="@+id/yc_right_sph"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/yc_right_cyl"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/yc_right_ax"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/yc_right_j_vision"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp"
+                        android:text="--"
+                        android:textColor="@color/gray_4a"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/yc_right_num"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp"
+                        android:text="--"
+                        android:textColor="@color/gray_4a"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="双眼(S)"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:text="0.3"
-                        android:textSize="12sp"/>
 
                     <TextView
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
+                        android:text="双眼(S)"
+                        android:textColor="@color/gray_4a"
+                        android:textSize="12sp" />
+                    <!--<TextView-->
+                    <!--android:id="@+id/yc_double_vision"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:paddingBottom="20dp"-->
+                    <!--android:paddingTop="20dp"-->
+                    <!--android:gravity="center"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textColor="@color/gray_4a"-->
+                    <!--android:text="&#45;&#45;"-->
+                    <!--android:textSize="12sp"/>-->
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/yc_double_vision"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="--"
+                            android:textColor="@color/gray_4a"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/yc_double_vision_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="13dp"
+                            android:text="--"
+                            android:textColor="@color/gray_4a"
+                            android:textSize="9sp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/yc_double_sph"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp"
                         android:text="--"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/yc_double_cyl"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="20dp"
-                        android:gravity="center"
                         android:text="--"
-                        android:layout_height="wrap_content"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/yc_double_ax"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
                     <TextView
+                        android:id="@+id/yc_double_j_vision"
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center"
                         android:paddingBottom="20dp"
                         android:paddingTop="20dp"
-                        android:gravity="center"
-                        android:text="0.3"
-                        android:layout_height="wrap_content"
+                        android:text="--"
                         android:textColor="@color/gray_4a"
-                        android:textSize="12sp"/>
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/yc_double_num"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:paddingTop="20dp"
+                        android:text="--"
+                        android:textColor="@color/gray_4a"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -532,111 +679,188 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingLeft="21dp"
-                    android:paddingTop="12dp"
-                    android:paddingBottom="12dp"
-                    android:paddingRight="12dp"
                     android:background="@color/white"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="21dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="12dp">
+
                     <View
                         android:layout_width="6dp"
                         android:layout_height="17dp"
-                        android:background="@color/app_blue"/>
+                        android:background="@color/app_blue" />
+
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_weight="1"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="7dp"
+                        android:layout_weight="1"
                         android:text="当前裸眼视力"
-                        android:textSize="14sp"
-                        android:textColor="@color/gray_4a"/>
+                        android:textColor="@color/gray_4a"
+                        android:textSize="14sp" />
+
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="5dp"
-                        android:src="@mipmap/icon_time"/>
+                        android:src="@mipmap/icon_time" />
+
                     <TextView
+                        android:id="@+id/yc_vision_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2018-06-01"
-                        android:textSize="12sp"
-                        android:textColor="#9b9b9b"/>
+                        android:text="--"
+                        android:textColor="#9b9b9b"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/solid_white"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="30dp">
+                    android:paddingBottom="30dp"
+                    android:paddingTop="10dp">
+
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="right"
-                        android:layout_height="wrap_content">
+                        android:gravity="right">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="左眼"
                             android:textColor="#9b9b9b"
-                            android:textSize="12sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
+                            android:textSize="12sp" />
+
+                        <RelativeLayout
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:text="+0.5"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/gray_4a"
-                            android:textSize="18sp"/>
+                            android:layout_marginLeft="5dp">
+
+                            <TextView
+                                android:id="@+id/yc_vision_left"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:layout_centerInParent="true"
+                                android:textColor="@color/gray_4a"
+                                android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/yc_vision_left_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textColor="@color/gray_4a"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
+                        <!--<TextView-->
+                        <!--android:id="@+id/yc_vision_left"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginLeft="5dp"-->
+                        <!--android:text="&#45;&#45;"-->
+                        <!--android:textColor="@color/gray_4a"-->
+                        <!--android:textSize="18sp" />-->
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:layout_height="wrap_content">
+                        android:gravity="center">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="右眼"
                             android:textColor="#9b9b9b"
-                            android:textSize="12sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
+                            android:textSize="12sp" />
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/yc_vision_right"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="5dp"-->
+                            <!--android:text="&#45;&#45;"-->
+                            <!--android:textColor="@color/gray_4a"-->
+                            <!--android:textSize="18sp" />-->
+                        <RelativeLayout
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:text="+0.5"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/gray_4a"
-                            android:textSize="18sp"/>
+                            android:layout_marginLeft="5dp">
+
+                            <TextView
+                                android:id="@+id/yc_vision_right"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:layout_centerInParent="true"
+                                android:textColor="@color/gray_4a"
+                                android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/yc_vision_right_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textColor="@color/gray_4a"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="left"
-                        android:layout_height="wrap_content">
+                        android:gravity="left">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="双眼"
                             android:textColor="#9b9b9b"
-                            android:textSize="12sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
+                            android:textSize="12sp" />
+
+                        <!--<TextView-->
+                            <!--android:id="@+id/yc_vision_double"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="5dp"-->
+                            <!--android:text="&#45;&#45;"-->
+                            <!--android:textColor="@color/gray_4a"-->
+                            <!--android:textSize="18sp" />-->
+                        <RelativeLayout
+                            android:layout_width="50dp"
                             android:layout_height="wrap_content"
-                            android:text="+0.5"
-                            android:layout_marginLeft="5dp"
-                            android:textColor="@color/gray_4a"
-                            android:textSize="18sp"/>
+                            android:layout_marginLeft="5dp">
+
+                            <TextView
+                                android:id="@+id/yc_vision_double"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:layout_centerInParent="true"
+                                android:textColor="@color/gray_4a"
+                                android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/yc_vision_double_num"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="--"
+                                android:layout_alignParentRight="true"
+                                android:textColor="@color/gray_4a"
+                                android:textSize="12sp" />
+                        </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
-
-
-
-
-
-
 
 
 </LinearLayout>

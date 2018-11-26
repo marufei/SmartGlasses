@@ -17,6 +17,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.activity.NvActivity;
 import com.yxys365.smartglasses.activity.RdActivity;
+import com.yxys365.smartglasses.activity.UserInfo2Activity;
 import com.yxys365.smartglasses.configs.HttpsAddress;
 import com.yxys365.smartglasses.entity.Const;
 import com.yxys365.smartglasses.entity.Register2Bean;
@@ -61,8 +62,8 @@ public class NvFragment extends BaseFragment implements View.OnClickListener{
 
     @Override
     protected void lazyLoad() {
-        MyUtils.Loge(TAG,"vision_type:"+ NvActivity.vision_type);
-        register2Bean.setVision_type(NvActivity.vision_type);
+
+
     }
 
     @Nullable
@@ -78,6 +79,8 @@ public class NvFragment extends BaseFragment implements View.OnClickListener{
         if(!TextUtils.isEmpty(SaveUtils.getString(KeyUtils.register_code))) {
             register2Bean.setRegister_code(SaveUtils.getString(KeyUtils.register_code));
         }
+        register2Bean.setVision_type("1");
+        MyUtils.Loge(TAG,"--vision_type:"+register2Bean.getVision_type());
     }
 
     private void initView() {
@@ -269,7 +272,7 @@ public class NvFragment extends BaseFragment implements View.OnClickListener{
                         RdActivity.start(getActivity());
                     }else {
                         String msg=jsonObject.getString("msg");
-                        MyUtils.showToast(getActivity(),msg);
+                        VolleyUtils.dealErrorStatus(getActivity(),code,msg);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

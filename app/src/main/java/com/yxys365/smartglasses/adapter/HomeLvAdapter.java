@@ -11,6 +11,7 @@ import com.clj.fastble.BleManager;
 import com.clj.fastble.data.BleDevice;
 import com.yxys365.smartglasses.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -24,43 +25,49 @@ import java.util.List;
  */
 public class HomeLvAdapter extends BaseAdapter {
     private Context context;
+    private List<BleDevice> list = new ArrayList<>();
 
 
-
-    public HomeLvAdapter(Context context){
-        this.context=context;
+    public HomeLvAdapter(Context context) {
+        this.context = context;
     }
+
+    public void setList(List<BleDevice> list) {
+        this.list = list;
+    }
+
     @Override
     public int getCount() {
-        return 3;
+        return list.size();
     }
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return list.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
-        ViewHolder viewHolder=null;
-        if(view==null){
-            viewHolder=new ViewHolder();
-            view=View.inflate(context, R.layout.item_home_lv,null);
+        ViewHolder viewHolder = null;
+        if (view == null) {
+            viewHolder = new ViewHolder();
+            view = View.inflate(context, R.layout.item_home_lv, null);
+            viewHolder.item_home_mac = view.findViewById(R.id.item_home_mac);
             view.setTag(viewHolder);
-        }else {
-            viewHolder=(ViewHolder)view.getTag();
+        } else {
+            viewHolder = (ViewHolder) view.getTag();
         }
-
+        viewHolder.item_home_mac.setText(list.get(i).getName());
         return view;
     }
-    class ViewHolder{
-        TextView item_name,item_address,item_qiangdu;
-        Button item_connect,item_disconnect,item_operate;
+
+    class ViewHolder {
+        TextView item_home_mac;
     }
 
 }

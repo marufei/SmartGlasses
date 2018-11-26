@@ -146,7 +146,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="2.0"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_zj_left"
@@ -161,7 +161,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_z_left"
@@ -176,7 +176,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_jz_left"
@@ -190,7 +190,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="300"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_bs_left"
@@ -205,7 +205,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="1000"
+                android:text="--"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <LinearLayout
@@ -239,7 +239,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="2.0"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_zj_right"
@@ -254,7 +254,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_z_right"
@@ -269,7 +269,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_jz_right"
@@ -283,7 +283,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="300"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_bs_right"
@@ -298,7 +298,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="1000"
+                android:text="--"
                 android:textColor="@color/white"/>
         </LinearLayout>
         <LinearLayout
@@ -332,7 +332,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="2.0"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_zj_both"
@@ -347,7 +347,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_z_both"
@@ -362,7 +362,7 @@
                 android:drawableRight="@mipmap/icon_dowm_white"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="200"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_jz_both"
@@ -376,7 +376,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="300"
+                android:text="--"
                 android:textColor="@color/white"/>
             <TextView
                 android:id="@+id/rd1_bs_both"
@@ -391,7 +391,7 @@
                 android:paddingBottom="15dp"
                 android:textSize="14sp"
                 android:gravity="center"
-                android:text="1000"
+                android:text="--"
                 android:textColor="@color/white"/>
         </LinearLayout>
 
@@ -402,6 +402,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginLeft="60dp"
+        android:visibility="gone"
         android:layout_marginRight="60dp"
         android:background="@drawable/solid_blue"
         android:layout_marginTop="100dp"

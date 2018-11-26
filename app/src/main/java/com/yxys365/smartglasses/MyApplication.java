@@ -2,8 +2,18 @@ package com.yxys365.smartglasses;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
 import com.clj.fastble.BleManager;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +33,48 @@ public class MyApplication extends Application {
     private static List<Activity> activities;
     private static MyApplication mInstance;
 
+    public static boolean isConnected;
+
+    /**
+     * 从硬件获取的设备唯一码
+     */
+    public static String ONE_CODE = "";
+    /**
+     * 更新内容
+     */
+    public static String update_content;
+    /**
+     * 更新地址
+     */
+    public static String update_url;
+
+
+    //static 代码段可以防止内存泄露
+    static {
+        //设置全局的Header构建器
+        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+            @Override
+            public RefreshHeader createRefreshHeader(Context context, RefreshLayout layout) {
+                layout.setPrimaryColorsId(R.color.app_blue, android.R.color.white);//全局设置主题颜色
+                return new ClassicsHeader(context);//.setTimeFormat(new DynamicTimeFormat("更新于 %s"));//指定为经典Header，默认是 贝塞尔雷达Header
+            }
+        });
+        //设置全局的Footer构建器
+        SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
+            @Override
+            public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                //指定为经典Footer，默认是 BallPulseFooter
+                return new ClassicsFooter(context).setDrawableSize(20);
+            }
+        });
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         mInstance = this;
-
+        //bugly初始化
+        CrashReport.initCrashReport(getApplicationContext(), "4e79470d47", true);
 
 
     }
@@ -61,7 +108,7 @@ public class MyApplication extends Application {
         try {
             Activity activity = activities.get(activities.size() - 1);
             finishActivity(activity);
-        }catch (Exception e){
+        } catch (Exception e) {
 //            LogUtil.e(TAG,"出错了");
         }
 
@@ -97,9 +144,10 @@ public class MyApplication extends Application {
 
     /**
      * 查询栈中是否有这个
+     *
      * @param cls
      */
-    public static boolean QueryActivity(Class<?> cls){
+    public static boolean QueryActivity(Class<?> cls) {
         if (activities != null) {
             for (Activity activity : activities) {
                 if (activity.getClass().equals(cls)) {

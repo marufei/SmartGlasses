@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yxys365.smartglasses.R;
+import com.yxys365.smartglasses.utils.MyUtils;
 
 import java.util.Arrays;
 
@@ -112,7 +113,7 @@ public class DialogBottomView extends Dialog {
             dialog_wv1.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
                 @Override
                 public void onSelected(int selectedIndex, String item) {
-                    Log.e(TAG, "selectedIndex: " + selectedIndex + ", item: " + item);
+                     MyUtils.Loge(TAG, "selectedIndex: " + selectedIndex + ", item: " + item);
                     itemData1=item;
                 }
             });
@@ -124,7 +125,7 @@ public class DialogBottomView extends Dialog {
             dialog_wv2.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
                 @Override
                 public void onSelected(int selectedIndex, String item) {
-                    Log.e(TAG, "selectedIndex: " + selectedIndex + ", item: " + item);
+                     MyUtils.Loge(TAG, "selectedIndex: " + selectedIndex + ", item: " + item);
                     itemData2 = item;
                 }
             });
@@ -135,7 +136,7 @@ public class DialogBottomView extends Dialog {
             dialog_wv3.setOnWheelViewListener(new WheelView.OnWheelViewListener() {
                 @Override
                 public void onSelected(int selectedIndex, String item) {
-                    Log.e(TAG, "selectedIndex: " + selectedIndex + ", item: " + item);
+                     MyUtils.Loge(TAG, "selectedIndex: " + selectedIndex + ", item: " + item);
                     itemData3 = item;
                 }
             });

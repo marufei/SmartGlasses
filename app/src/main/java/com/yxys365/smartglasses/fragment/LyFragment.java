@@ -5,11 +5,18 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
+import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
@@ -21,11 +28,23 @@ import com.github.mikephil.charting.formatter.IValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.Utils;
 import com.github.mikephil.charting.utils.ViewPortHandler;
+import com.google.gson.Gson;
+import com.yxys365.smartglasses.MyApplication;
 import com.yxys365.smartglasses.R;
+import com.yxys365.smartglasses.activity.UserInfo2Activity;
 import com.yxys365.smartglasses.adapter.LyLvAdapter;
+import com.yxys365.smartglasses.configs.HttpsAddress;
+import com.yxys365.smartglasses.entity.LyVisionEntity;
+import com.yxys365.smartglasses.utils.KeyUtils;
+import com.yxys365.smartglasses.utils.MyUtils;
+import com.yxys365.smartglasses.utils.SaveUtils;
+import com.yxys365.smartglasses.utils.VolleyUtils;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by MaRufei
@@ -49,26 +68,51 @@ public class LyFragment extends BaseFragment {
      */
     private XAxis xAxis;
     /**
-     *   LineDataSet每一个对象就是一条连接线
+     * LineDataSet每一个对象就是一条连接线
      */
     LineDataSet set1;
+    private float yData;
+    private List<LyVisionEntity.RecordsBean> listData = new ArrayList<>();
+    private float xData;
 
     @Override
     protected void lazyLoad() {
+//        MyUtils.Loge(TAG, "LyFragment------1");
+//        if (!TextUtils.isEmpty(MyApplication.ONE_CODE)) {
+//            MyUtils.Loge(TAG, "LyFragment------2");
+//            getVisionData();
+//        } else {
+//            if (adapter != null) {
+//                listData.clear();
+//                adapter.notifyDataSetChanged();
+//            }
+//            if (ly_line != null&&ly_line.getData()!=null) {
+//                ly_line.clear();
+//                //刷新数据
+////                ly_line.getData().notifyDataChanged();
+//                ly_line.notifyDataSetChanged();
+//            }
+//
+//        }
+
+        initLines();
+        getVisionData();
 
     }
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=View.inflate(getActivity(), R.layout.fragment_ly,null);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup
+            container, @Nullable Bundle savedInstanceState) {
+        view = View.inflate(getActivity(), R.layout.fragment_ly, null);
         initViews();
         initDatas();
         return view;
     }
 
     private void initDatas() {
-        initLines();
+//        initLines();
+//        getVisionData();
     }
 
     private void initLines() {
@@ -105,7 +149,7 @@ public class LyFragment extends BaseFragment {
          * Y轴默认显示左右两个轴线
          */
         //获取右边的轴线
-        YAxis rightAxis=ly_line.getAxisRight();
+        YAxis rightAxis = ly_line.getAxisRight();
         //设置图表右边的y轴禁用
         rightAxis.setEnabled(false);
         //获取左边的轴线
@@ -116,12 +160,12 @@ public class LyFragment extends BaseFragment {
         leftAxis.setDrawZeroLine(false);
 
         //创建描述信息
-        Description description =new Description();
+        Description description = new Description();
         description.setText("");
         description.setTextColor(Color.RED);
         description.setTextSize(20);
         ly_line.setDescription(description);//设置图表描述信息
-        ly_line.setNoDataText("没有数据");//没有数据时显示的文字
+        ly_line.setNoDataText("暂无数据");//没有数据时显示的文字
         ly_line.setNoDataTextColor(Color.BLUE);//没有数据时显示文字的颜色
         ly_line.setDrawGridBackground(false);//chart 绘图区后面的背景矩形将绘制
         ly_line.setDrawBorders(false);//禁止绘制图表边框的线
@@ -131,35 +175,41 @@ public class LyFragment extends BaseFragment {
         //lineChart.notifyDataSetChanged();//刷新数据
         //lineChart.invalidate();//重绘 «
 
-        bindDatas();
-
-
-
-
+//        bindDatas();
 
     }
 
     /**
-     * 折线数据源
+     * 绑定折线数据源
      */
-    private void bindDatas() {
+    private void bindDatas(LyVisionEntity lyVisionEntity) {
         ArrayList<Entry> values1 = new ArrayList<>();
-        values1.add(new Entry(4,12));
-        values1.add(new Entry(6,19));
-        values1.add(new Entry(9,25));
-        values1.add(new Entry(12,3));
-        values1.add(new Entry(15,37));
+        for (int i = 0; i < lyVisionEntity.getRecords().size(); i++) {
+            if (lyVisionEntity.getRecords().get(i).getVision() == null) {
+                yData = 0f;
 
-        if(ly_line.getData()!=null&& ly_line.getData().getDataSetCount() > 0){
+            } else {
+                yData = Float.valueOf(lyVisionEntity.getRecords().get(i).getVision().getDouble_vision());
+            }
+            if(lyVisionEntity.getRecords().get(i).getSimple_date().startsWith("0")){
+                xData=Float.valueOf(lyVisionEntity.getRecords().get(i).getSimple_date().substring(1,lyVisionEntity.getRecords().get(i).getSimple_date().length()));
+            }else {
+                xData=Float.valueOf(lyVisionEntity.getRecords().get(i).getSimple_date());
+            }
+            MyUtils.Loge(TAG,"xData:"+xData);
+            values1.add(new Entry(i+1, yData));
+        }
+
+        if (ly_line.getData() != null && ly_line.getData().getDataSetCount() > 0) {
             //获取数据
             set1 = (LineDataSet) ly_line.getData().getDataSetByIndex(0);
             set1.setValues(values1);
             //刷新数据
             ly_line.getData().notifyDataChanged();
             ly_line.notifyDataSetChanged();
-        }else {
+        } else {
             //设置数据1  参数1：数据源 参数2：图例名称
-            set1 = new LineDataSet(values1, "测试数据");
+            set1 = new LineDataSet(values1, "近七天双眼裸眼视力");
             set1.setColor(Color.BLACK);
             set1.setCircleColor(Color.BLACK);
             set1.setLineWidth(1f);//设置线宽
@@ -171,7 +221,7 @@ public class LyFragment extends BaseFragment {
             set1.setValueTextSize(9f);//设置显示值的文字大小
             set1.setDrawFilled(true);//设置禁用范围背景填充
             // 填充透明度
-            set1.setFillAlpha(45);
+            set1.setFillAlpha(80);
 
             // 设置曲线允许平滑 决定是曲线true还是直线false 若为曲线相邻两点连线会发生弯曲
 
@@ -182,7 +232,7 @@ public class LyFragment extends BaseFragment {
             set1.setCubicIntensity(0.1f);
 
             //格式化显示数据
-            final DecimalFormat mFormat = new DecimalFormat("###,###,##0");
+            final DecimalFormat mFormat = new DecimalFormat("0.00");
             set1.setValueFormatter(new IValueFormatter() {
                 @Override
                 public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
@@ -194,7 +244,7 @@ public class LyFragment extends BaseFragment {
                 Drawable drawable = ContextCompat.getDrawable(getActivity(), R.drawable.line_chat);
                 set1.setFillDrawable(drawable);//设置范围背景填充
             } else {
-                set1.setFillColor(Color.BLACK);
+                set1.setFillColor(Color.TRANSPARENT);
             }
         }
 
@@ -209,15 +259,55 @@ public class LyFragment extends BaseFragment {
         ly_line.invalidate();
 
 
-
-
     }
 
     private void initViews() {
-        ly_lv=view.findViewById(R.id.ly_lv);
-        adapter=new LyLvAdapter(getActivity());
-        ly_lv.setAdapter(adapter);
+        ly_lv = view.findViewById(R.id.ly_lv);
 
-        ly_line=view.findViewById(R.id.ly_line);
+
+        ly_line = view.findViewById(R.id.ly_line);
+    }
+
+    /**
+     * 获取裸眼报表
+     */
+    public void getVisionData() {
+        listData.clear();
+        String url = HttpsAddress.BASE_ADDRESS + HttpsAddress.VISION_FROM + "?device_code=" + MyApplication.ONE_CODE;
+        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                MyUtils.Loge(TAG, "getVisionData-----response:" + response);
+                try {
+                    Gson gson = new Gson();
+                    LyVisionEntity lyVisionEntity = gson.fromJson(response, LyVisionEntity.class);
+                    if (lyVisionEntity.getCode() == 0) {
+                        listData.addAll(lyVisionEntity.getRecords());
+                        adapter = new LyLvAdapter(getActivity(), listData);
+                        ly_lv.setAdapter(adapter);
+                        bindDatas(lyVisionEntity);
+                    } else {
+                        VolleyUtils.dealErrorStatus(getActivity(), lyVisionEntity.getCode(), lyVisionEntity.getMsg());
+                    }
+                } catch (Exception e) {
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                MyUtils.showToast(getActivity(), "网络有问题");
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Authorization", SaveUtils.getString(KeyUtils.token_type) + " " + SaveUtils.getString(KeyUtils.access_token));
+                return map;
+            }
+        };
+        VolleyUtils.setTimeOut(stringRequest);
+        VolleyUtils.getInstance(getActivity()).addToRequestQueue(stringRequest);
     }
 }

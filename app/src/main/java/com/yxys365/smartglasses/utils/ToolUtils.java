@@ -1,9 +1,11 @@
 package com.yxys365.smartglasses.utils;
 
+import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.os.PowerManager;
 import android.text.TextUtils;
 
 
@@ -22,9 +24,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.content.Context.KEYGUARD_SERVICE;
 
 /**
  * Created by MaRufei
@@ -441,6 +446,55 @@ public class ToolUtils {
 //        bitmap.setPixels(pixels,0,100,0,0,w,h);
 
         return bitmap;
+    }
+
+    /**
+     * 获取16进制随机数
+     * @param len
+     * @return
+     * @throws
+     */
+    public static String randomHexString(int len)  {
+        try {
+            StringBuffer result = new StringBuffer();
+            for(int i=0;i<len;i++) {
+                result.append(Integer.toHexString(new Random().nextInt(16)));
+            }
+            return result.toString().toLowerCase();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            e.printStackTrace();
+
+        }
+        return null;
+
+    }
+
+    /**
+     * 唤醒手机屏幕并解锁
+     */
+    public static void wakeUpAndUnlock() {
+        // 获取电源管理器对象
+        PowerManager pm = (PowerManager) MyApplication.getInstance()
+                .getSystemService(Context.POWER_SERVICE);
+        boolean screenOn = pm.isScreenOn();
+        if (!screenOn) {
+            // 获取PowerManager.WakeLock对象,后面的参数|表示同时传入两个值,最后的是LogCat里用的Tag
+            PowerManager.WakeLock wl = pm.newWakeLock(
+                    PowerManager.ACQUIRE_CAUSES_WAKEUP |
+                            PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "bright");
+            wl.acquire(10000); // 点亮屏幕
+            wl.release(); // 释放
+        }
+        // 屏幕解锁
+        KeyguardManager keyguardManager = (KeyguardManager) MyApplication.getInstance()
+                .getSystemService(KEYGUARD_SERVICE);
+        KeyguardManager.KeyguardLock keyguardLock = keyguardManager.newKeyguardLock("unLock");
+        // 屏幕锁定
+        keyguardLock.reenableKeyguard();
+        keyguardLock.disableKeyguard(); // 解锁
+        MyUtils.Loge(TAG,"屏幕点亮并解锁");
     }
 
 

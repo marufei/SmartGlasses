@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/search_divice"/>
     <TextView
+        android:id="@+id/item_home_mac"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="2b:4e:4t:6f:3f:9d"

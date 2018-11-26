@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yxys365.smartglasses.R;
@@ -18,12 +19,12 @@ import com.yxys365.smartglasses.R;
  * Purpose:TODO
  * update：
  */
-public class OcularLvAdapter extends BaseAdapter {
+public class PlanLvAdapter extends BaseAdapter {
     private Context context;
 
 
 
-    public OcularLvAdapter(Context context){
+    public PlanLvAdapter(Context context){
         this.context=context;
     }
     @Override
@@ -46,10 +47,17 @@ public class OcularLvAdapter extends BaseAdapter {
         ViewHolder viewHolder=null;
         if(view==null){
             viewHolder=new ViewHolder();
-            view=View.inflate(context, R.layout.item_ocular,null);
+            view=View.inflate(context, R.layout.item_buy_time,null);
+            viewHolder.item_buy_time_bac=view.findViewById(R.id.item_buy_time_bac);
             view.setTag(viewHolder);
         }else {
             viewHolder=(ViewHolder)view.getTag();
+        }
+
+        if(i%2==0){
+            viewHolder.item_buy_time_bac.setBackgroundColor(context.getResources().getColor(R.color.white));
+        }else {
+            viewHolder.item_buy_time_bac.setBackgroundColor(context.getResources().getColor(R.color.gray_ed));
         }
 
         return view;
@@ -57,6 +65,7 @@ public class OcularLvAdapter extends BaseAdapter {
     class ViewHolder{
         TextView item_name,item_address,item_qiangdu;
         Button item_connect,item_disconnect,item_operate;
+        LinearLayout item_buy_time_bac;
     }
 
 }

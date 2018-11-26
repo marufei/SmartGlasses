@@ -28,21 +28,21 @@ public class QgBean {
     @Override
     public String toString() {
         return "{" +
-                "left_sph:\"" + left_sph + '\"' +
-                ", left_cyl:\"" + left_cyl + '\"' +
-                ", left_ax:\"" + left_ax + '\"' +
-                ", left_vision:\"" + left_vision + '\"' +
-                ", left_num:\"" + left_num + '\"' +
-                ", right_sph:\"" + right_sph + '\"' +
-                ", right_cyl:\"" + right_cyl + '\"' +
-                ", right_ax:\"" + right_ax + '\"' +
-                ", right_vision:\"" + right_vision + '\"' +
-                ", right_num:\"" + right_num + '\"' +
-                ", double_sph:\"" + double_sph + '\"' +
-                ", double_cyl:\"" + double_cyl + '\"' +
-                ", double_ax:\"" + double_ax + '\"' +
-                ", double_vision:\"" + double_vision + '\"' +
-                ", double_num:\"" + double_num + '\"' +
+                "\"left_sph\":\"" + left_sph + '\"' +
+                ", \"left_cyl\":\"" + left_cyl + '\"' +
+                ", \"left_ax\":\"" + left_ax + '\"' +
+                ", \"left_vision\":\"" + left_vision + '\"' +
+                ", \"left_num\":\"" + left_num + '\"' +
+                ", \"right_sph\":\"" + right_sph + '\"' +
+                ", \"right_cyl\":\"" + right_cyl + '\"' +
+                ", \"right_ax\":\"" + right_ax + '\"' +
+                ", \"right_vision\":\"" + right_vision + '\"' +
+                ", \"right_num\":\"" + right_num + '\"' +
+                ", \"double_sph\":\"" + double_sph + '\"' +
+                ", \"double_cyl\":\"" + double_cyl + '\"' +
+                ", \"double_ax\":\"" + double_ax + '\"' +
+                ", \"double_vision\":\"" + double_vision + '\"' +
+                ", \"double_num\":\"" + double_num + '\"' +
                 '}';
     }
 

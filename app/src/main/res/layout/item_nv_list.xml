@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/bac"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingTop="15dp"
     android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:paddingRight="15dp"
+    android:paddingTop="15dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:elevation="5dp"
-        android:padding="12dp"
         android:gravity="center_vertical"
-        android:background="@color/white">
+        android:padding="12dp">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.5"
             android:gravity="center">
 
             <ImageView
@@ -34,6 +35,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/item_nv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="6/12"
@@ -45,76 +47,154 @@
                     android:layout_height="wrap_content"
                     android:text="09:20"
                     android:textColor="#9b9b9b"
-                    android:textSize="12sp" />
+                    android:textSize="12sp"
+                    android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
 
         <View
             android:layout_width="2dp"
             android:layout_height="18dp"
-            android:background="#e2e2e2"/>
+            android:background="#e2e2e2"
+            android:layout_marginRight="5dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ems="1"
                 android:text="左眼"
                 android:textColor="#9b9b9b"
-                android:textSize="12sp"
-                android:ems="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="2.5"
-                android:textSize="18sp"
-                android:textColor="@color/gray_4a"/>
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp">
+                <TextView
+                    android:id="@+id/item_nv_left"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="2.5"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/item_nv_left_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="+3"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="11sp" />
+            </RelativeLayout>
+
+            <!--<TextView-->
+                <!--android:id="@+id/item_nv_left"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:text="2.5"-->
+                <!--android:textColor="@color/gray_4a"-->
+                <!--android:textSize="18sp" />-->
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ems="1"
                 android:text="右眼"
                 android:textColor="#9b9b9b"
-                android:textSize="12sp"
-                android:ems="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="2.5"
-                android:textSize="18sp"
-                android:textColor="@color/gray_4a"/>
+                android:textSize="12sp" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/item_nv_right"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:text="2.5"-->
+                <!--android:textColor="@color/gray_4a"-->
+                <!--android:textSize="18sp" />-->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp">
+                <TextView
+                    android:id="@+id/item_nv_right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="2.5"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/item_nv_right_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="+3"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="11sp" />
+            </RelativeLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ems="1"
                 android:text="双眼"
                 android:textColor="#9b9b9b"
-                android:textSize="12sp"
-                android:ems="1"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:text="2.5"
-                android:textSize="18sp"
-                android:textColor="@color/gray_4a"/>
+                android:textSize="12sp" />
+
+            <!--<TextView-->
+                <!--android:id="@+id/item_nv_double"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="5dp"-->
+                <!--android:text="2.5"-->
+                <!--android:textColor="@color/gray_4a"-->
+                <!--android:textSize="18sp" />-->
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_marginRight="5dp">
+                <TextView
+                    android:id="@+id/item_nv_double"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="2.5"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/item_nv_double_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="+3"
+                    android:textColor="@color/gray_4a"
+                    android:textSize="11sp" />
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 
