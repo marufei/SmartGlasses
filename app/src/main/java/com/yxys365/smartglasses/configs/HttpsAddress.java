@@ -11,11 +11,11 @@ package com.yxys365.smartglasses.configs;
 public class HttpsAddress {
 
     //    线上地址
-//    public static String BASE_ADDRESS="https://app.yxys365.com/api/";
+    public static String BASE_ADDRESS="https://app.yxys365.com/api/";
 
 
 //    //    测试地址
-    public static String BASE_ADDRESS="http://112.74.127.99:8002/api/";
+//    public static String BASE_ADDRESS="http://112.74.127.99:8002/api/";
 
 
 
