@@ -58,6 +58,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
     private TextView mine_device;
     private Button mine_login_out;
     private LinearLayout update_version;
+    private TextView mine_version;
 
     @Override
     protected void lazyLoad() {
@@ -114,6 +115,8 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
 
         update_version=view.findViewById(R.id.update_version);
         update_version.setOnClickListener(this);
+        mine_version=view.findViewById(R.id.mine_version);
+        mine_version.setText("v"+MyUtils.getVersionName(getActivity()));
     }
 
     @Override
@@ -153,7 +156,6 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 LoginActivity.start(getActivity());
                 break;
             case R.id.update_version:
-                MyUtils.showToast(getActivity(),"当前已是最新版本");
                 break;
         }
     }

@@ -28,7 +28,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class SplashActivity extends CheckPermissionsActivity implements AMapLocationListener {
+public class SplashActivity extends BaseActivity implements AMapLocationListener {
 
     private String TAG = "SplashActivity";
     private VisionDataView visionDataView;
@@ -42,7 +42,6 @@ public class SplashActivity extends CheckPermissionsActivity implements AMapLoca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         full(true);
-        setPermission();
         MyUtils.Loge(TAG,MyUtils.sHA1(this));
         setContentView(R.layout.activity_splash);
         initData();
