@@ -98,6 +98,7 @@ public class ServiceInfoActivity extends BaseActivity implements View.OnClickLis
     private String province;
     private String city;
     private VisionDataView visionDataView;
+    private TextView service_tv_glass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +145,8 @@ public class ServiceInfoActivity extends BaseActivity implements View.OnClickLis
         service_et_wym = findViewById(R.id.service_et_wym);
 //        service_et_time = findViewById(R.id.service_et_time);
         service_et_bm=findViewById(R.id.service_et_bm);
+        service_tv_glass=findViewById(R.id.service_tv_glass);
+        service_tv_glass.setOnClickListener(this);
     }
 
     /**
@@ -221,6 +224,12 @@ public class ServiceInfoActivity extends BaseActivity implements View.OnClickLis
 //                    MyUtils.showToast(ServiceInfoActivity.this,"请先设置购置锻炼时间");
 //                    return;
 //                }
+                if (TextUtils.isEmpty(service_tv_glass.getText().toString())){
+                    MyUtils.showToast(ServiceInfoActivity.this,"请先选择目镜");
+                    return;
+                }
+
+
 
                 getStep4Data();
                 break;
@@ -247,6 +256,26 @@ public class ServiceInfoActivity extends BaseActivity implements View.OnClickLis
                     return;
                 }
                 getDistrict(3);
+                break;
+            case R.id.service_tv_glass:
+                DialogBottomView dialogBottomView = new DialogBottomView(ServiceInfoActivity.this, R.layout.dialog_wheel_one, "更换目镜", 1);
+                dialogBottomView.setData(Const.glasses);
+                dialogBottomView.setOnEventClickListenner(new DialogBottomView.OnEventClickListenner() {
+                    @Override
+                    public void onSure(String item1, String item2, String item3) {
+                        if (!TextUtils.isEmpty(item2)) {
+                            service_tv_glass.setText(item2);
+                        } else {
+                            service_tv_glass.setText(Const.glasses[0]);
+                        }
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+                dialogBottomView.showDialog();
                 break;
         }
     }
@@ -305,6 +334,7 @@ public class ServiceInfoActivity extends BaseActivity implements View.OnClickLis
                 if(!TextUtils.isEmpty(service_et_jcz.getText().toString())) {
                     map.put("reviewer", service_et_jcz.getText().toString());
                 }
+                map.put("glass_number",service_tv_glass.getText().toString());
                 return map;
             }
         };

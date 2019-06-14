@@ -39,6 +39,7 @@ import com.google.gson.Gson;
 import com.yxys365.smartglasses.MyApplication;
 import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.activity.GlassesReplaceActivity;
+import com.yxys365.smartglasses.activity.LoginActivity;
 import com.yxys365.smartglasses.activity.MainActivity;
 import com.yxys365.smartglasses.adapter.HomeLvAdapter;
 import com.yxys365.smartglasses.configs.HttpsAddress;
@@ -211,6 +212,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         //获取剩余时间，更换目镜提示
         remind();
 
+        //todo 上传裸眼视力弹窗 没有上传就上传一下 上传过就跳过此步
+        if (SaveUtils.getInt(KeyUtils.vision_upload) == 0) {
+            showVisionDialog();
+        }
+
 
     }
 
@@ -296,7 +302,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         BleManager.getInstance().scan(new BleScanCallback() {
             @Override
             public void onScanStarted(boolean success) {
-                
+
             }
 
             @Override
@@ -349,7 +355,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onScanFinished(List<BleDevice> scanResultList) {
 
-                 MyUtils.Loge(TAG, "最终搜索到的蓝牙设备:" + list.size());
+                MyUtils.Loge(TAG, "最终搜索到的蓝牙设备:" + list.size());
 
                 if (list.size() > 0) {
                     home_lv.setVisibility(View.VISIBLE);
@@ -409,12 +415,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             BleManager.getInstance().connect(bleDevice, new BleGattCallback() {
                 @Override
                 public void onStartConnect() {
-                     MyUtils.Loge(TAG, "onStartConnect");
+                    MyUtils.Loge(TAG, "onStartConnect");
                 }
 
                 @Override
                 public void onConnectFail(BleDevice bleDevice, BleException exception) {
-                     MyUtils.Loge(TAG, "onConnectFail");
+                    MyUtils.Loge(TAG, "onConnectFail");
 
                     MyApplication.isConnected = false;
                     isTouch = false;
@@ -496,7 +502,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
                 @Override
                 public void onDisConnected(boolean isActiveDisConnected, BleDevice bleDevice, BluetoothGatt gatt, int status) {
-                     MyUtils.Loge(TAG, "onDisConnected");
+                    MyUtils.Loge(TAG, "onDisConnected");
                     //将当前计划id保存到缓存
                     if (listPlan != null && listPlan.size() > planIndex && listPlan.get(planIndex) != null) {
                         SaveUtils.setInt(KeyUtils.plan_index, planIndex);
@@ -573,12 +579,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         @Override
                         public void onWriteFailure(BleException exception) {
                             // 发送数据到设备失败
-                             MyUtils.Loge(TAG, "onWriteFailure-------------");
+                            MyUtils.Loge(TAG, "onWriteFailure-------------");
 //                            Toast.makeText(getActivity(), "发送数据失败：" + exception.getDescription(), Toast.LENGTH_LONG).show();
                         }
                     });
         } else {
-             MyUtils.Loge(TAG, "s是空值");
+            MyUtils.Loge(TAG, "s是空值");
         }
     }
 
@@ -625,7 +631,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             String str22 = ss.substring(ss.length() / 2, ss.length());
                             String notify_data = Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str11))) +
                                     Codeutil.bytesToHexString(SecurityUtil.decrpytJNI(Codeutil.hexStringToByte(str22)));
-                             MyUtils.Loge(TAG, "----解密后的数据notify_data:" + notify_data);
+                            MyUtils.Loge(TAG, "----解密后的数据notify_data:" + notify_data);
 
 //                            Toast.makeText(getActivity(), "接收到解密后的数据notify_data：" + notify_data, Toast.LENGTH_LONG).show();
                             operateOrder(notify_data);
@@ -1474,7 +1480,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case 0x01:
-                 MyUtils.Loge(TAG, "蓝牙已经打开------");
+                MyUtils.Loge(TAG, "蓝牙已经打开------");
                 if (BleUtils.checkGPSIsOpen(getActivity())) {
                     showLoad(getActivity(), "正在初始化蓝牙").show();
                     BleUtils.setScanRule();
@@ -1537,7 +1543,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 MyUtils.Loge("AAA", "倒计时:" + leftTime);
                 MyUtils.Loge(TAG, "BBB-倒计时获取时间:" + leftTime);
                 home_plan_timer.setText(timeFormat(millisUntilFinished));
-                 MyUtils.Loge("CountDown", millisUntilFinished + "");
+                MyUtils.Loge("CountDown", millisUntilFinished + "");
                 //点亮屏幕
                 if (leftTime < 5) {
                     MyUtils.Loge(TAG, "倒计时--屏幕点亮");
@@ -1603,7 +1609,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void onSure(VisionDataView.VisionBean vision) {
                 //TODO 上传数据
                 MyUtils.Loge(TAG, "vision:::::" + vision);
-//                updateData(vision);
+                updateVesion(vision);
                 visionDataView.dismiss();
             }
         });
@@ -1681,7 +1687,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                             showAlertDialog("提示", "请及时更换目镜", "确定", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    GlassesReplaceActivity.start(getActivity(),2);
+                                    GlassesReplaceActivity.start(getActivity(), 2);
                                     dialogInterface.dismiss();
                                 }
                             }, "取消", new DialogInterface.OnClickListener() {
@@ -1727,6 +1733,59 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
                 map.put("Authorization", SaveUtils.getString(KeyUtils.token_type) + " " + SaveUtils.getString(KeyUtils.access_token));
+                return map;
+            }
+        };
+        VolleyUtils.setTimeOut(stringRequest);
+        VolleyUtils.getInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    /**
+     * 上传裸眼数据
+     *
+     * @param vision
+     */
+    private void updateVesion(final VisionDataView.VisionBean vision) {
+        String url = HttpsAddress.BASE_ADDRESS + HttpsAddress.UPDATE_VISION;
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                MyUtils.Loge(TAG, "上传裸眼视力updateVesion（）:" + response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    int code = jsonObject.getInt("code");
+                    if (code == 0) {
+                        MyUtils.showToast(getActivity(), "裸眼视力上传成功");
+                    } else {
+                        String msg = jsonObject.getString("msg");
+                        VolleyUtils.dealErrorStatus(getActivity(), code, msg);
+                    }
+                } catch (Exception e) {
+
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                MyUtils.showToast(getActivity(), "网络有问题");
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Authorization", SaveUtils.getString(KeyUtils.token_type) + " " + SaveUtils.getString(KeyUtils.access_token));
+                return map;
+            }
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("left_vision", vision.getLeft_vision());
+                map.put("left_num", vision.getLeft_num());
+                map.put("right_vision", vision.getRight_vision());
+                map.put("right_num", vision.getRight_num());
+                map.put("double_vision", vision.getDouble_vision());
+                map.put("double_num", vision.getDouble_num());
                 return map;
             }
         };

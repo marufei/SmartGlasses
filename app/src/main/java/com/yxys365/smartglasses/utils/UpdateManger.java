@@ -106,7 +106,7 @@ public class UpdateManger {
         }
         if(type==2){
             title="下载";
-            message="是否下载微商工具箱";
+            message="是否下载？";
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext);// Builder，可以通过此builder设置改变AleartDialog的默认的主题样式及属性相关信息
         builder.setTitle(title);

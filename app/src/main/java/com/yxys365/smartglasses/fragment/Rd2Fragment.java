@@ -186,7 +186,7 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog2(1,2);
                 break;
             case R.id.rd2_t_qj_both:
-                showDialog2(1,3);
+//                showDialog2(1,3);
                 break;
             case R.id.rd2_t_zj_left:
                 showDialog2(2,4);
@@ -195,7 +195,7 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog2(2,5);
                 break;
             case R.id.rd2_t_zj_both:
-                showDialog2(2,6);
+//                showDialog2(2,6);
                 break;
             case R.id.rd_t_z_left:
                 showDialog1(1,1);
@@ -204,7 +204,7 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog1(1,2);
                 break;
             case R.id.rd_t_z_both:
-                showDialog1(1,3);
+//                showDialog1(1,3);
                 break;
             case R.id.rd_t_s_left:
                 showDialog1(2,4);
@@ -231,7 +231,7 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog2(1,22);
                 break;
             case R.id.rd2_o_qj_both:
-                showDialog2(1,33);
+//                showDialog2(1,33);
                 break;
             case R.id.rd2_o_zj_left:
                 showDialog2(2,44);
@@ -240,7 +240,7 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog2(2,55);
                 break;
             case R.id.rd2_o_zj_both:
-                showDialog2(2,66);
+//                showDialog2(2,66);
                 break;
             case R.id.rd2_o_z_left:
                 showDialog1(1,11);
@@ -249,7 +249,7 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog1(1,22);
                 break;
             case R.id.rd2_o_z_both:
-                showDialog1(1,33);
+//                showDialog1(1,33);
                 break;
             case R.id.rd2_o_jz_left:
                 showDialog1(2,44);
@@ -310,8 +310,8 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean.setRight_ax(single_data);
                         break;
                     case 3:
-                        rd_t_z_both.setText(single_data);
-                        qgBean.setDouble_ax(single_data);
+//                        rd_t_z_both.setText(single_data);
+//                        qgBean.setDouble_ax(single_data);
                         break;
                     case 4:
                         rd_t_s_left.setText(single_data);
@@ -346,8 +346,8 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean1.setRight_ax(single_data);
                         break;
                     case 33:
-                        rd2_o_z_both.setText(single_data);
-                        qgBean1.setDouble_ax(single_data);
+//                        rd2_o_z_both.setText(single_data);
+//                        qgBean1.setDouble_ax(single_data);
                         break;
                     case 44:
                         rd2_o_jz_left.setText(single_data);
@@ -435,8 +435,8 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean.setRight_sph(qg_data);
                         break;
                     case 3:
-                        rd2_t_qj_both.setText(qg_data);
-                        qgBean.setDouble_sph(qg_data);
+//                        rd2_t_qj_both.setText(qg_data);
+//                        qgBean.setDouble_sph(qg_data);
                         break;
                     case 4:
                         rd2_t_zj_left.setText(qg_data);
@@ -447,8 +447,8 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean.setRight_cyl(qg_data);
                         break;
                     case 6:
-                        rd2_t_zj_both.setText(qg_data);
-                        qgBean.setDouble_cyl(qg_data);
+//                        rd2_t_zj_both.setText(qg_data);
+//                        qgBean.setDouble_cyl(qg_data);
                         break;
                     case 11:
                         rd2_o_qj_left.setText(qg_data);
@@ -459,8 +459,8 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean1.setRight_sph(qg_data);
                         break;
                     case 33:
-                        rd2_o_qj_both.setText(qg_data);
-                        qgBean1.setDouble_sph(qg_data);
+//                        rd2_o_qj_both.setText(qg_data);
+//                        qgBean1.setDouble_sph(qg_data);
                         break;
                     case 44:
                         rd2_o_zj_left.setText(qg_data);
@@ -471,8 +471,8 @@ public class Rd2Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean1.setRight_cyl(qg_data);
                         break;
                     case 66:
-                        rd2_o_zj_both.setText(qg_data);
-                        qgBean1.setDouble_cyl(qg_data);
+//                        rd2_o_zj_both.setText(qg_data);
+//                        qgBean1.setDouble_cyl(qg_data);
                         break;
 
                 }

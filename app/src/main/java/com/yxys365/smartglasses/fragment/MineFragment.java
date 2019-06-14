@@ -152,6 +152,7 @@ public class MineFragment extends BaseFragment implements View.OnClickListener {
                 SaveUtils.setString(KeyUtils.access_token,"");
                 SaveUtils.setString(KeyUtils.expires_in,"");
                 SaveUtils.setString(KeyUtils.token_type,"");
+                SaveUtils.setInt(KeyUtils.vision_upload,0);
                 MyApplication.finishAllActivity();
                 LoginActivity.start(getActivity());
                 break;

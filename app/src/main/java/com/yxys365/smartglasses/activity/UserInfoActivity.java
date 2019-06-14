@@ -66,6 +66,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     private EditText user_info_et_parent;
     private EditText user_info_et_wx;
     private Register1Bean register1Bean = new Register1Bean();
+    private EditText user_info_et_id_card;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,8 +139,9 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         user_info_et_card.setOnClickListener(this);
         user_info_et_card_number = findViewById(R.id.user_info_et_card_number);
 
-        user_info_et_parent=findViewById(R.id.user_info_et_parent);
-        user_info_et_wx=findViewById(R.id.user_info_et_wx);
+        user_info_et_parent = findViewById(R.id.user_info_et_parent);
+        user_info_et_wx = findViewById(R.id.user_info_et_wx);
+        user_info_et_id_card = findViewById(R.id.user_info_et_id_card);
     }
 
     public static void start(Context context) {
@@ -169,6 +171,10 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     MyUtils.showToast(UserInfoActivity.this, "请先输入孩子姓名");
                     return;
                 }
+                if (TextUtils.isEmpty(user_info_et_id_card.getText().toString())) {
+                    MyUtils.showToast(UserInfoActivity.this, "请先输入孩子身份证号");
+                    return;
+                }
                 if (TextUtils.isEmpty(sex)) {
                     MyUtils.showToast(UserInfoActivity.this, "请先选择性别");
                     return;
@@ -177,6 +183,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     MyUtils.showToast(UserInfoActivity.this, "请先输入生日");
                     return;
                 }
+
 //                if (TextUtils.isEmpty(doc_type)) {
 //                    MyUtils.showToast(UserInfoActivity.this, "请先选择证件类型");
 //                    return;
@@ -187,13 +194,13 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 //                    return;
 //                }
 
-                if(TextUtils.isEmpty(user_info_et_parent.getText().toString())){
-                    MyUtils.showToast(UserInfoActivity.this,"请先输入监护人姓名");
+                if (TextUtils.isEmpty(user_info_et_parent.getText().toString())) {
+                    MyUtils.showToast(UserInfoActivity.this, "请先输入监护人姓名");
                     return;
                 }
 
-                if(TextUtils.isEmpty(user_info_et_wx.getText().toString())){
-                    MyUtils.showToast(UserInfoActivity.this,"请先输入监护人微信号");
+                if (TextUtils.isEmpty(user_info_et_wx.getText().toString())) {
+                    MyUtils.showToast(UserInfoActivity.this, "请先输入监护人微信号");
                     return;
                 }
 
@@ -207,7 +214,8 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
 //                register1Bean.setDoc_number(user_info_et_card_number.getText().toString().trim());
                 register1Bean.setWechat(user_info_et_wx.getText().toString());
                 register1Bean.setGuardian_name(user_info_et_parent.getText().toString());
-                MyUtils.Loge(TAG,"register1Bean----1-----:"+register1Bean.toString());
+                register1Bean.setIdcard(user_info_et_id_card.getText().toString());
+                MyUtils.Loge(TAG, "register1Bean----1-----:" + register1Bean.toString());
 //                UserInfo2Activity.start(this,register1Bean);
                 getStep1Result();
                 break;
@@ -250,7 +258,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                     } else {
                         MyUtils.showToast(UserInfoActivity.this, register1Entity.getMsg());
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
@@ -274,7 +282,6 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     }
 
 
-
     private void showDialogData() {
         String[] sex = new String[]{"身份证", "护照"};
         DialogBottomView dialogBottomView = new DialogBottomView(UserInfoActivity.this, R.layout.dialog_wheel_one, "选择性别", 1);
@@ -282,7 +289,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         dialogBottomView.setOnEventClickListenner(new DialogBottomView.OnEventClickListenner() {
             @Override
             public void onSure(String item1, String item2, String item3) {
-                if(!TextUtils.isEmpty(item2)) {
+                if (!TextUtils.isEmpty(item2)) {
                     if (item2.equals("身份证")) {
                         doc_type = "1";
                         user_info_et_card.setText("身份证");
@@ -291,7 +298,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                         doc_type = "2";
                         user_info_et_card.setText("护照");
                     }
-                }else {
+                } else {
                     doc_type = "1";
                     user_info_et_card.setText("身份证");
                 }
@@ -313,18 +320,18 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                MyUtils.Loge(TAG,"response:"+response);
+                MyUtils.Loge(TAG, "response:" + response);
                 try {
-                    JSONObject jsonObject=new JSONObject(response);
+                    JSONObject jsonObject = new JSONObject(response);
                     int code = jsonObject.getInt("code");
-                    if(code==0){
-                        String register_code=jsonObject.getString("register_code");
-                        SaveUtils.setString(KeyUtils.register_code,register_code);
+                    if (code == 0) {
+                        String register_code = jsonObject.getString("register_code");
+                        SaveUtils.setString(KeyUtils.register_code, register_code);
                         NvActivity.start(UserInfoActivity.this);
 
-                    }else {
-                        String msg=jsonObject.getString("msg");
-                        VolleyUtils.dealErrorStatus(UserInfoActivity.this,code,msg);
+                    } else {
+                        String msg = jsonObject.getString("msg");
+                        VolleyUtils.dealErrorStatus(UserInfoActivity.this, code, msg);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -347,11 +354,12 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
                 map.put("name", register1Bean.getName());
                 map.put("sex", register1Bean.getSex());
                 map.put("birthday", register1Bean.getBirthday());
+                map.put("idcard", register1Bean.getIdcard());
 //                map.put("doc_type", register1Bean.getDoc_type());
 //                map.put("doc_number", register1Bean.getDoc_number());
-                map.put("wechat",register1Bean.getWechat());
+                map.put("wechat", register1Bean.getWechat());
 //                map.put("email",register1Bean.getEmail());
-                map.put("guardian_name",register1Bean.getGuardian_name());
+                map.put("guardian_name", register1Bean.getGuardian_name());
 //                map.put("guardian_tel",register1Bean.getGuardian_tel());
                 return map;
             }

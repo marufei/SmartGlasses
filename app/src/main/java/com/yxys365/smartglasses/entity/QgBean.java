@@ -19,9 +19,6 @@ public class QgBean {
     private String right_ax;
     private String right_vision;
     private String right_num;
-    private String double_sph;
-    private String double_cyl;
-    private String double_ax;
     private String double_vision;
     private String double_num;
 
@@ -38,9 +35,9 @@ public class QgBean {
                 ", \"right_ax\":\"" + right_ax + '\"' +
                 ", \"right_vision\":\"" + right_vision + '\"' +
                 ", \"right_num\":\"" + right_num + '\"' +
-                ", \"double_sph\":\"" + double_sph + '\"' +
-                ", \"double_cyl\":\"" + double_cyl + '\"' +
-                ", \"double_ax\":\"" + double_ax + '\"' +
+//                ", \"double_sph\":\"" + double_sph + '\"' +
+//                ", \"double_cyl\":\"" + double_cyl + '\"' +
+//                ", \"double_ax\":\"" + double_ax + '\"' +
                 ", \"double_vision\":\"" + double_vision + '\"' +
                 ", \"double_num\":\"" + double_num + '\"' +
                 '}';
@@ -126,29 +123,6 @@ public class QgBean {
         this.right_num = right_num;
     }
 
-    public String getDouble_sph() {
-        return double_sph;
-    }
-
-    public void setDouble_sph(String double_sph) {
-        this.double_sph = double_sph;
-    }
-
-    public String getDouble_cyl() {
-        return double_cyl;
-    }
-
-    public void setDouble_cyl(String double_cyl) {
-        this.double_cyl = double_cyl;
-    }
-
-    public String getDouble_ax() {
-        return double_ax;
-    }
-
-    public void setDouble_ax(String double_ax) {
-        this.double_ax = double_ax;
-    }
 
     public String getDouble_vision() {
         return double_vision;

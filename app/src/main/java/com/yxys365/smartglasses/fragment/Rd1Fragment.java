@@ -127,7 +127,7 @@ public class Rd1Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog2(2, 5);
                 break;
             case R.id.rd1_zj_both:
-                showDialog2(2, 6);
+//                showDialog2(2, 6);
                 break;
             case R.id.rd1_qj_left:
                 showDialog2(1, 1);
@@ -136,7 +136,7 @@ public class Rd1Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog2(1, 2);
                 break;
             case R.id.rd1_qj_both:
-                showDialog2(1, 3);
+//                showDialog2(1, 3);
                 break;
             case R.id.rd1_bs_left:
                 showDialog1(3, 7);
@@ -163,7 +163,7 @@ public class Rd1Fragment extends BaseFragment implements View.OnClickListener {
                 showDialog1(1, 2);
                 break;
             case R.id.rd1_z_both:
-                showDialog1(1, 3);
+//                showDialog1(1, 3);
                 break;
         }
     }
@@ -205,8 +205,8 @@ public class Rd1Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean.setRight_ax(single_data);
                         break;
                     case 3:
-                        rd1_z_both.setText(single_data);
-                        qgBean.setDouble_ax(single_data);
+//                        rd1_z_both.setText(single_data);
+//                        qgBean.setDouble_ax(single_data);
                         break;
                     case 4:
                         rd1_jz_left.setText(single_data);
@@ -291,8 +291,8 @@ public class Rd1Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean.setRight_sph(qg_data);
                         break;
                     case 3:
-                        rd1_qj_both.setText(qg_data);
-                        qgBean.setDouble_sph(qg_data);
+//                        rd1_qj_both.setText(qg_data);
+//                        qgBean.setDouble_sph(qg_data);
                         break;
                     case 4:
                         rd1_zj_left.setText(qg_data);
@@ -303,8 +303,8 @@ public class Rd1Fragment extends BaseFragment implements View.OnClickListener {
                         qgBean.setRight_cyl(qg_data);
                         break;
                     case 6:
-                        rd1_zj_both.setText(qg_data);
-                        qgBean.setDouble_cyl(qg_data);
+//                        rd1_zj_both.setText(qg_data);
+//                        qgBean.setDouble_cyl(qg_data);
                         break;
                 }
                 MyUtils.Loge(TAG, "qgBean:" + qgBean.toString());

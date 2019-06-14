@@ -42,7 +42,7 @@ public class SplashActivity extends BaseActivity implements AMapLocationListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         full(true);
-        MyUtils.Loge(TAG,MyUtils.sHA1(this));
+        MyUtils.Loge(TAG, MyUtils.sHA1(this));
         setContentView(R.layout.activity_splash);
         initData();
 
@@ -50,11 +50,11 @@ public class SplashActivity extends BaseActivity implements AMapLocationListener
 
     private void initData() {
         if (!TextUtils.isEmpty(SaveUtils.getString(KeyUtils.tel)) && !TextUtils.isEmpty(SaveUtils.getString(KeyUtils.pwd))) {
-            MyUtils.Loge(TAG,"自动登录");
+            MyUtils.Loge(TAG, "自动登录");
 //            loginIn();
             initLocation();
         } else {
-            MyUtils.Loge(TAG,"去登录界面");
+            MyUtils.Loge(TAG, "去登录界面");
             new Thread() {
                 @Override
                 public void run() {
@@ -102,18 +102,18 @@ public class SplashActivity extends BaseActivity implements AMapLocationListener
                     Gson gson = new Gson();
                     loginEntity = gson.fromJson(response, LoginEntity.class);
                     if (loginEntity.getCode() == 0) {
-//                        SaveUtils.setString(KeyUtils.access_token, loginEntity.getData().getAccess_token());
-//                        SaveUtils.setString(KeyUtils.expires_in, String.valueOf(loginEntity.getData().getExpires_in()));
-//                        SaveUtils.setString(KeyUtils.token_type, loginEntity.getData().getToken_type());
-//                        MyApplication.ONE_CODE="E30000000003";
-//
-//                        MainActivity.start(SplashActivity.this);
-//                        finish();
-                        if (loginEntity.getData().getVision_upload() == 0) {//未上传裸眼视力
-                            showVisionDialog();
-                        } else {//1.已上传裸眼视力
-                            MainActivity.start(SplashActivity.this);
-                        }
+                        SaveUtils.setString(KeyUtils.access_token, loginEntity.getData().getAccess_token());
+                        SaveUtils.setString(KeyUtils.expires_in, String.valueOf(loginEntity.getData().getExpires_in()));
+                        SaveUtils.setString(KeyUtils.token_type, loginEntity.getData().getToken_type());
+                        SaveUtils.setInt(KeyUtils.vision_upload, loginEntity.getData().getVision_upload());
+                        MainActivity.start(SplashActivity.this);
+                        finish();
+
+//                        if (loginEntity.getData().getVision_upload() == 0) {//未上传裸眼视力
+//                            showVisionDialog();
+//                        } else {//1.已上传裸眼视力
+//                            MainActivity.start(SplashActivity.this);
+//                        }
                     } else {
                         VolleyUtils.dealErrorStatus(SplashActivity.this, loginEntity.getCode(), loginEntity.getMsg());
                     }
@@ -138,7 +138,6 @@ public class SplashActivity extends BaseActivity implements AMapLocationListener
         VolleyUtils.setTimeOut(stringRequest);
         VolleyUtils.getInstance(SplashActivity.this).addToRequestQueue(stringRequest);
     }
-
 
 
     /**
@@ -227,6 +226,7 @@ public class SplashActivity extends BaseActivity implements AMapLocationListener
                 map.put("Authorization", SaveUtils.getString(KeyUtils.token_type) + " " + SaveUtils.getString(KeyUtils.access_token));
                 return map;
             }
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> map = new HashMap<>();
@@ -245,7 +245,7 @@ public class SplashActivity extends BaseActivity implements AMapLocationListener
 
     @Override
     public void onLocationChanged(AMapLocation aMapLocation) {
-        MyUtils.Loge(TAG,"定位回调");
+        MyUtils.Loge(TAG, "定位回调");
         if (aMapLocation != null) {
             if (aMapLocation.getErrorCode() == 0) {
                 latitude = aMapLocation.getLatitude();//纬度

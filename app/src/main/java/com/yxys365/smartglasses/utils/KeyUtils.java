@@ -30,6 +30,11 @@ public class KeyUtils {
      */
     public static final String section_id="section_id";
 
+    /**
+     * 是否上传裸眼视力 0 未上传  1 上传
+     */
+    public static final String vision_upload="vision_upload";
+
 
 
 

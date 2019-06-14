@@ -33,6 +33,15 @@ public class Register1Bean implements Serializable{
     private String email;
     private String guardian_name;
     private String guardian_tel;
+    private String idcard;
+
+    public String getIdcard() {
+        return idcard;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
 
     public String getTel() {
         return tel;

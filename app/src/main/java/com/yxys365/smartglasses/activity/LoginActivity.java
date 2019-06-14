@@ -152,12 +152,14 @@ public class LoginActivity extends CheckPermissionsActivity implements View.OnCl
                         SaveUtils.setString(KeyUtils.token_type, loginEntity.getData().getToken_type());
                         SaveUtils.setString(KeyUtils.tel,login_tel.getText().toString());
                         SaveUtils.setString(KeyUtils.pwd,login_pwd.getText().toString());
-//                        MyApplication.ONE_CODE="E30000000003";
-                        if (loginEntity.getData().getVision_upload() == 0) {//未上传裸眼视力
-                            showVisionDialog();
-                        } else {//1.已上传裸眼视力
-                            MainActivity.start(LoginActivity.this);
-                        }
+                        SaveUtils.setInt(KeyUtils.vision_upload,loginEntity.getData().getVision_upload());
+                        MainActivity.start(LoginActivity.this);
+                        finish();
+//                        if (loginEntity.getData().getVision_upload() == 0) {//未上传裸眼视力
+//                            showVisionDialog();
+//                        } else {//1.已上传裸眼视力
+//                            MainActivity.start(LoginActivity.this);
+//                        }
                     } else {
                         VolleyUtils.dealErrorStatus(LoginActivity.this, loginEntity.getCode(), loginEntity.getMsg());
                     }
