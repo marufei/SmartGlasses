@@ -41,6 +41,7 @@ import com.yxys365.smartglasses.R;
 import com.yxys365.smartglasses.activity.GlassesReplaceActivity;
 import com.yxys365.smartglasses.activity.LoginActivity;
 import com.yxys365.smartglasses.activity.MainActivity;
+import com.yxys365.smartglasses.activity.UserActivity;
 import com.yxys365.smartglasses.adapter.HomeLvAdapter;
 import com.yxys365.smartglasses.configs.HttpsAddress;
 import com.yxys365.smartglasses.dialog.VisionDataView;
@@ -180,6 +181,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
      * 是否点击开始连接蓝牙
      */
     private boolean isTouch = false;
+    private static final int IDCARD_CODE = 0x02;
+    /**
+     * 剩余天数
+     */
+    private int left_days;
 
 
     @Override
@@ -802,22 +808,27 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     JSONObject jsonObject = new JSONObject(response);
                     int code = jsonObject.getInt("code");
                     if (code == 0) {
-                        int left_days = jsonObject.getInt("left_days");
-                        if (left_days <= 5) {
-                            if (left_days == 0) {
-                                //TODO 去掉提示
-                                MyUtils.showToast(getActivity(), "请联系经销商或客服，添加购置时间");
-                                return;
-                            }
-                            //TODO 去掉提示
-                            MyUtils.showToast(getActivity(), "请及时与经销商或客服进行续锻炼时间，以免影响正常训练");
-                            //TODO 连接设备成功 开始操作
-                            sendData(KeyUtils.DEVICE_0066);
+                        int has_idcard = jsonObject.getInt("has_idcard");
+                        left_days = jsonObject.getInt("left_days");
+                        if (has_idcard == 0) {
+                            showAlertDialog("提示", "为了提供优质数据服务，需要不全锻炼者身份证信息，确认前往补全", "前往填写", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent intent = new Intent(getActivity(), UserActivity.class);
+                                    startActivityForResult(intent, IDCARD_CODE);
+                                    dialogInterface.dismiss();
+                                }
+                            }, "继续锻炼", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int which) {
+                                    operatePlan();
+                                    dialogInterface.dismiss();
+                                }
+                            });
+
                         } else {
-                            //TODO 连接设备成功 开始操作
-                            sendData(KeyUtils.DEVICE_0066);
+                            operatePlan();
                         }
-                        getPlan();
 
                     } else if (code == 901) { //未绑定状态
                         isFirstActive = false;
@@ -854,6 +865,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         };
         VolleyUtils.setTimeOut(stringRequest);
         VolleyUtils.getInstance(getActivity()).addToRequestQueue(stringRequest);
+    }
+
+    public void operatePlan(){
+        if (left_days <= 5) {
+            if (left_days == 0) {
+                //TODO 去掉提示
+                MyUtils.showToast(getActivity(), "请联系经销商或客服，添加购置时间");
+                return;
+            }
+            //TODO 去掉提示
+            MyUtils.showToast(getActivity(), "请及时与经销商或客服进行续锻炼时间，以免影响正常训练");
+            //TODO 连接设备成功 开始操作
+            sendData(KeyUtils.DEVICE_0066);
+        } else {
+            //TODO 连接设备成功 开始操作
+            sendData(KeyUtils.DEVICE_0066);
+        }
+        getPlan();
     }
 
     /**
@@ -1477,7 +1506,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        MyUtils.Loge(TAG, "蓝牙已经打开222222------");
         super.onActivityResult(requestCode, resultCode, data);
+        MyUtils.Loge(TAG, "蓝牙已经打开222222------");
         switch (requestCode) {
             case 0x01:
                 MyUtils.Loge(TAG, "蓝牙已经打开------");
@@ -1486,6 +1517,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     BleUtils.setScanRule();
                     startScan();
                 }
+                break;
+            case IDCARD_CODE:
+                MyUtils.Loge(TAG, "蓝牙已经打开222222------");
+                operatePlan();
                 break;
             default:
                 break;

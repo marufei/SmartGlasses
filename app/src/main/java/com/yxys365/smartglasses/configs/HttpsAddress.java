@@ -174,4 +174,14 @@ public class HttpsAddress {
      */
     public static String GLASSES_CHANGE="my/glass-change";
 
+    /**
+     * 个人资料
+     */
+    public static String INFO="info";
+
+    /**
+     * 修改身份证
+     */
+    public static String IDCARD_UPDATE="idcard/update";
+
 }
